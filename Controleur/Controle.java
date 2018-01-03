@@ -146,7 +146,7 @@ public class Controle implements Observer{
             if(obj instanceof ModeDeJeu){
                 plateau = new Plateau();
                 plateau.setModeJeu((ModeDeJeu) obj);                
-                switchPanelActif(new VueParamPlateau().getMainPanel());
+                
             }
             // bouton regle
         }
@@ -172,10 +172,8 @@ public class Controle implements Observer{
     /**
      * @param panelActif the panelActif to set
      */
-    public void switchPanelActif(JPanel panel) {
-        vue.remove(panelActif);
-        panelActif = panel;
-        vue.add(panelActif);
+    public void switchVueActive() {
+        
     }    
 }
 

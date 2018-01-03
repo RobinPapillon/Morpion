@@ -29,18 +29,18 @@ import Morpion.Bouton;
 
 public class VueMorpion extends Observable{
     private final JPanel mainPanel ;
-    private ArrayList<Bouton> buttons = new ArrayList<>();    
+    private ArrayList<Bouton> buttons = new ArrayList<>(); 
+    private final JFrame window;
     
     public VueMorpion(int n){
-//        window = new JFrame();
-//        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-//        window.setSize(700, 500);
-//        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-//        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
-//        window.setTitle("MORPION");
-        
-         mainPanel = new JPanel(new BorderLayout());
-//        window.add(mainPanel) ;
+        window = new JFrame();
+        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        window.setSize(700, 500);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
+        window.setTitle("MORPION");
+        mainPanel = new JPanel(new BorderLayout());
+        window.add(mainPanel);
         
         // =================================================================================
         // NORD

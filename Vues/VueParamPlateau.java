@@ -32,10 +32,18 @@ public class VueParamPlateau extends Observable{
     private JPanel mainPanel ;
     private HashMap<Integer, JRadioButton> ensembleDesBoutonsRadios ;
     private int tailleSelectione = 3;
+    private final JFrame window;
     
     public VueParamPlateau(){
         
-        JPanel mainPanel = new JPanel(new BorderLayout());
+        window = new JFrame();
+        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        window.setSize(700, 500);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
+        window.setTitle("MORPION");
+        mainPanel = new JPanel(new BorderLayout());
+        window.add(mainPanel);
        
         
         // =================================================================================

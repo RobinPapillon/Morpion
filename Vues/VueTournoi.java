@@ -32,11 +32,19 @@ public class VueTournoi extends Observable{
     private JPanel panelList;
     private JPanel panelJoueurs;
     private JComboBox listeDeroulante;
+    private final JFrame window;
     
     public VueTournoi(){
         Font f = new Font("arial", 0, 50);
 
+        window = new JFrame();
+        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        window.setSize(700, 500);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
+        window.setTitle("MORPION");
         mainPanel = new JPanel(new BorderLayout());
+        window.add(mainPanel);
     
         
         // =================================================================================
