@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Observable;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -127,8 +128,12 @@ public class VueTournoi extends Observable{
         boutonValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                setChanged();                   
-                notifyObservers(new Message(MessageType.VALIDER_JOUEURS));
+                setChanged();
+                ArrayList<String> listeNoms = new ArrayList<>();
+                for(int i = 1; i < (listeDeroulante.getSelectedIndex() + 3) * 2; i += 2){
+                    listeNoms.add(((JTextField)panelJoueurs.getComponent(i)).getText());
+                }
+                notifyObservers(new MessageNoms(MessageType.VALIDER_JOUEURS, listeNoms));
                 clearChanged();}
         });
         

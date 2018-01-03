@@ -103,7 +103,7 @@ public class VueDuel extends Observable{
                 ArrayList<String> listeNoms = new ArrayList<>();
                 listeNoms.add(((JTextField)panelJoueurs.getComponent(3)).getText());
                 listeNoms.add(((JTextField)panelJoueurs.getComponent(5)).getText());
-                notifyObservers(new Message (MessageType.RETOUR_ACCEUIL));
+                notifyObservers(new MessageNoms (MessageType.RETOUR_ACCEUIL, listeNoms));
                 clearChanged();}
         });
         
