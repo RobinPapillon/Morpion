@@ -156,13 +156,15 @@ public class Controle implements Observer{
                  break;
                  
              case FIN_DUEL:
-                 Joueur gagnant;
-                 Joueur perdant;
-                 vueFinDuel = new VueFinDuel(gagnant, perdant);
-                 vueFinDuel.addObserver(this);
-                 vueMorpion.close();
-                 vueFinDuel.afficher();
-                 vueCourante = "vueFinDuel";
+                 Joueur gagnant = currentJ;
+                 if (vueCourante2 == "vueDuel") {
+                     vueFinDuel = new VueFinDuel(gagnant);
+                     vueFinDuel.addObserver(this);
+                     vueMorpion.close();
+                     vueFinDuel.afficher();
+                     vueCourante = "vueFinDuel";
+                 }
+                 
                  break;
                  
              case RETOUR_ACCEUIL:

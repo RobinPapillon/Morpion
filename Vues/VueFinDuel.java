@@ -33,13 +33,11 @@ public class VueFinDuel extends Observable{
     private JButton boutonRage;
     private JLabel bienvenue;
     private String pseudoGagnant;
-    private String pseudoPerdant;
     private final JFrame window ;
     
     
-    public VueFinDuel(Joueur gagnant, Joueur perdant){
+    public VueFinDuel(Joueur gagnant){
         pseudoGagnant = gagnant.getPseudo();
-        pseudoPerdant = perdant.getPseudo();
         Font f = new Font("arial", 0, 50); 
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
