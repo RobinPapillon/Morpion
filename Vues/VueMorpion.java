@@ -32,7 +32,8 @@ public class VueMorpion extends Observable{
     private ArrayList<Bouton> buttons = new ArrayList<>(); 
     private final JFrame window;
     
-    public VueMorpion(int n){
+    
+    public VueMorpion(String pseudo1, String pseudo2, int n){
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         window.setSize(700, 500);
@@ -57,7 +58,8 @@ public class VueMorpion extends Observable{
         //panelOuest.setSize(145, 345);
         panelOuest.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         panelOuest.add(new JLabel("       Joueur 1       ", JLabel.CENTER));
-        panelOuest.add(new JLabel("\n X", JLabel.CENTER));
+        panelOuest.add(new JLabel(pseudo1, JLabel.CENTER));
+        panelOuest.add(new JLabel("\n CROIX", JLabel.CENTER));
         
         // =================================================================================
         // EST
@@ -66,7 +68,8 @@ public class VueMorpion extends Observable{
         //panelEst.setSize(145, 345);
         panelEst.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         panelEst.add(new JLabel("       Joueur 2       ", JLabel.CENTER));
-        panelEst.add(new JLabel("\n O", JLabel.CENTER));
+        panelOuest.add(new JLabel(pseudo2, JLabel.CENTER));
+        panelEst.add(new JLabel("\n ROND", JLabel.CENTER));
         
         // =================================================================================
         // CENTRE
@@ -155,7 +158,7 @@ public class VueMorpion extends Observable{
     
     
     public static void main(String [] args) {
-        VueMorpion exemple1 = new VueMorpion(5);
+        VueMorpion exemple1 = new VueMorpion("toto", "titi", 5);
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         window.setSize(700, 500);

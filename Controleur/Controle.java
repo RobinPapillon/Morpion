@@ -156,8 +156,8 @@ public class Controle implements Observer{
                  break;
                  
              case FIN_DUEL:
-                 String gagnant;
-                 String perdant;
+                 Joueur gagnant;
+                 Joueur perdant;
                  vueFinDuel = new VueFinDuel(gagnant, perdant);
                  vueFinDuel.addObserver(this);
                  vueMorpion.close();
@@ -189,8 +189,9 @@ public class Controle implements Observer{
                  
             case VALIDER_JOUEURS:
                  if (vueCourante == "vueDuel") {
-                    String joueur1 = "";
-                    String joueur2 = "";
+                    MessageNoms mn = (MessageNoms)obj; //interprète le message reçu comme un message contenant une liste de noms 
+                
+                    ArrayList<String> noms = mn.getNoms();
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueDuel.close();
@@ -215,8 +216,19 @@ public class Controle implements Observer{
                         String joueur5 = "";
                     }
                 }
-                 vueParam.afficher();
-                 break;
+                vueParam.afficher();
+                break;
+                
+            case VALIDER_TAILLE:
+                int tailleSelect = vueParam.getTailleSelect();
+                System.out.println(tailleSelect);
+                if (vueCourante2 == "vueDuel") {
+                    vueMorpion = new VueMorpion(tailleSelect);
+                    vueMorpion.addObserver(this);
+                    vueParam.close();
+                    vueMorpion.afficher();
+                }
+                break;
                  
              case REGLE:
                  vueRegle = new VueRegle();

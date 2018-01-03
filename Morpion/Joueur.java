@@ -4,6 +4,10 @@ public class Joueur {
     private String pseudo;
     private Symbole symbole;
     
+    public Joueur(String p){
+        setPseudo(p);
+    }
+    
     public Joueur(String p, Symbole s){
         setPseudo(p);
         setSymbole(s);

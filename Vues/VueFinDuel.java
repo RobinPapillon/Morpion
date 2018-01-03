@@ -21,7 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import Morpion.Joueur;
+import Morpion.*;
 
 /**
  *
@@ -37,7 +37,9 @@ public class VueFinDuel extends Observable{
     private final JFrame window ;
     
     
-    public VueFinDuel(String gagnant, String perdant){
+    public VueFinDuel(Joueur gagnant, Joueur perdant){
+        pseudoGagnant = gagnant.getPseudo();
+        pseudoPerdant = perdant.getPseudo();
         Font f = new Font("arial", 0, 50); 
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -53,7 +55,7 @@ public class VueFinDuel extends Observable{
         // NORD
         JPanel panelHaut = new JPanel() ;
         mainPanel.add(panelHaut, BorderLayout.NORTH);
-        bienvenue = new JLabel("BIENVENUE");
+        bienvenue = new JLabel("FIN DE LA PARTIE");
         panelHaut.add(bienvenue);
         bienvenue.setFont(f);
         
@@ -93,17 +95,17 @@ public class VueFinDuel extends Observable{
 
     }
     
-        public static void main(String [] args) {
-        VueFinDuel exemple1 = new VueFinDuel("Thomas","Damien");
-        JFrame window = new JFrame();
-        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        window.setSize(700, 500);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
-        window.setTitle("MORPION");
-        window.add(exemple1.getMainPanel());
-        window.setVisible(true);
-   }
+//        public static void main(String [] args) {
+//        VueFinDuel exemple1 = new VueFinDuel("Thomas","Damien");
+//        JFrame window = new JFrame();
+//        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+//        window.setSize(700, 500);
+//        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+//        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
+//        window.setTitle("MORPION");
+//        window.add(exemple1.getMainPanel());
+//        window.setVisible(true);
+//   }
 
     /**
      * @return the mainPanel

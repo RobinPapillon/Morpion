@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Observable;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -98,7 +99,10 @@ public class VueDuel extends Observable{
         boutonRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                setChanged();                   
+                setChanged();
+                ArrayList<String> listeNoms = new ArrayList<>();
+                listeNoms.add(((JTextField)panelJoueurs.getComponent(3)).getText());
+                listeNoms.add(((JTextField)panelJoueurs.getComponent(5)).getText());
                 notifyObservers(new Message (MessageType.RETOUR_ACCEUIL));
                 clearChanged();}
         });

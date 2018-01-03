@@ -153,7 +153,7 @@ public class VueParamPlateau extends Observable{
     public int getTailleSelect() {
         for (int i = 0; i < 3; i++) {
             if (ensembleDesBoutonsRadios.get(i).isSelected()) {
-                return i+2;
+                return i+3;
             }
             
         }

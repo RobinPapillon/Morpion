@@ -20,5 +20,6 @@ public enum MessageType {
     EXIT,
     RETOUR,
     REJOUER,
-    RETOUR_ACCEUIL;
+    RETOUR_ACCEUIL,
+    BOUTON;
 }
