@@ -16,10 +16,9 @@ public class Plateau {
     private Joueur j2;
            
     
-    public Plateau(String nom1, String nom2, int n){
+    public Plateau(String nom1, String nom2){
         j1 = new Joueur(nom1, Symbole.CROIX);
         j2 = new Joueur(nom2, Symbole.ROND);
-        setPlateau(n);
         nbCasesCochees = 0;
     }
     
