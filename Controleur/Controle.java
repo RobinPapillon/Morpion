@@ -35,6 +35,7 @@ public class Controle implements Observer{
     private VueFinDuel vueFinDuel;
     private VueParamPlateau vueParam;
     private VueMorpion vueMorpion;
+//    private VueClassement vueClassement;
     
     private ArrayList<String> noms;
     
@@ -42,6 +43,7 @@ public class Controle implements Observer{
     private String vueCourante2; //vue courante n-1
     
     private ArrayList<Plateau> listeMatchs = new ArrayList<Plateau>();
+    private ArrayList<Joueur> joueurs;
     
     private int nbPartie;
     
@@ -146,14 +148,17 @@ public class Controle implements Observer{
         return this.plateau;
     }
     
-    public ArrayList<Plateau> creerTournoi (ArrayList<String> noms,int taille){
+    public ArrayList<Plateau> creerTournoi (ArrayList<Joueur> joueurs,int taille){
         ArrayList<Plateau> listeTournoi = new ArrayList<Plateau>();
-        for (int i = 0; i < noms.size()-1; i++) {
-            for (int j = i+1; j < noms.size(); j++) {
-                Plateau p = new Plateau(noms.get(i),noms.get(j), taille);
+        
+        for (int i = 0; i < joueurs.size()-1; i++) {
+            for (int j = i+1; j < joueurs.size(); j++) {
+                Plateau p = new Plateau(joueurs.get(i).getPseudo(),joueurs.get(j).getPseudo(), taille);
+                
                 listeTournoi.add(p);
             }
         }
+        
         return listeTournoi;
     }
 
@@ -228,7 +233,12 @@ public class Controle implements Observer{
                     
                 } else if(vueCourante == "vueTournoi"){
                     MessageNoms mn = (MessageNoms)obj;
-                    noms = mn.getNoms();                    
+                    noms = mn.getNoms();
+                    joueurs = new ArrayList<Joueur>();
+                    for (int i = 0; i < noms.size(); i++) {
+                        Joueur j = new Joueur(noms.get(i));
+                        joueurs.add(j);
+                    }
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueTournoi.close();
@@ -253,18 +263,20 @@ public class Controle implements Observer{
                         }
                     } 
                 } else if (vueCourante2 == "vueTournoi") {
-                    listeMatchs = creerTournoi(noms, tailleSelect);
+                    listeMatchs = creerTournoi(joueurs, tailleSelect);
                     plateau = listeMatchs.get(0);
                     vueMorpion = new VueMorpion(plateau.getJ1().getPseudo(), 
                                         plateau.getJ2().getPseudo(), tailleSelect);
+                    setJ1(plateau.getJ1());
+                    setJ2(plateau.getJ2());
                     vueMorpion.addObserver(this);
                     vueParam.close();
                     vueMorpion.afficher();
                     if (plateau.getNbCasesCochees() == 0) {
-                        if (vueMorpion.getS() == j1.getSymbole()) {
-                            currentJ = j1;
+                        if (vueMorpion.getS() == plateau.getJ1().getSymbole()) {
+                            currentJ = plateau.getJ1();
                         } else{
-                            currentJ = j2;
+                            currentJ = plateau.getJ2();
                         }
                     }
                     nbPartie = 1;
@@ -289,39 +301,47 @@ public class Controle implements Observer{
                  break;
             
             case BOUTON:
-                 MessageBouton mb = (MessageBouton) obj;
-                 Bouton b = mb.getB();
-                 cocherCase(b);
-                 if (resultat(b.getX()-1, b.getY()-1)== "Continue") {
-                     joueurSuivant();                    
-                 }
-                 else if (resultat(b.getX()-1, b.getY()-1)== "Partie Gagne") {
-                     if (vueCourante2 == "vueDuel") {
-                         vueFinDuel = new VueFinDuel(currentJ);
-                         vueFinDuel.addObserver(this);
-                         vueDuel.close();
-                         vueFinDuel.afficher();
-                     } else if (vueCourante2 == "vueTournoi") {
-                         tailleSelect = vueParam.getTailleSelect();
-                         if (nbPartie < (tailleSelect * (tailleSelect - 1))/2) {
-                             nbPartie++;
-                             plateau = listeMatchs.get(nbPartie-1);
+                MessageBouton mb = (MessageBouton) obj;
+                Bouton b = mb.getB();
+                cocherCase(b);
+                if (resultat(b.getX()-1, b.getY()-1)== "Continue") {
+                    joueurSuivant();                    
+                }
+                else if (resultat(b.getX()-1, b.getY()-1)== "Partie Gagne") {
+                    if (vueCourante2 == "vueDuel") {
+                        vueFinDuel = new VueFinDuel(currentJ);
+                        vueFinDuel.addObserver(this);
+                        vueMorpion.close();
+                        vueFinDuel.afficher();
+                    } else if (vueCourante2 == "vueTournoi") {
+                        tailleSelect = vueParam.getTailleSelect();
+                        if (nbPartie < (tailleSelect * (tailleSelect - 1))/2) {
+                            nbPartie++;
+                            vueMorpion.close();
+                            plateau = listeMatchs.get(nbPartie-1);
                             vueMorpion = new VueMorpion(plateau.getJ1().getPseudo(), 
                                                 plateau.getJ2().getPseudo(), tailleSelect);
+                            setJ1(plateau.getJ1());
+                            setJ2(plateau.getJ2());
                             vueMorpion.addObserver(this);
                             vueParam.close();
                             vueMorpion.afficher();
                             if (plateau.getNbCasesCochees() == 0) {
-                                if (vueMorpion.getS() == j1.getSymbole()) {
-                                    currentJ = j1;
+                                if (vueMorpion.getS() == plateau.getJ1().getSymbole()) {
+                                    currentJ = plateau.getJ1();
                                 } else{
-                                    currentJ = j2;
+                                    currentJ = plateau.getJ2();
                                 }
                             }
-                         }
-                     }
-                 }
-                 break;
+                        } else{
+//                            vueClassement = new VueClassement();
+//                            vueClassement.addObserver(this);
+//                            vueMorpion.close();
+//                            vueClassement.afficher();
+                        }
+                    }
+                }
+                break;
                  
             case REJOUER:
                 tailleSelect = vueParam.getTailleSelect();
