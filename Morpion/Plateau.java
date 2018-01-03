@@ -16,9 +16,10 @@ public class Plateau {
     private Joueur j2;
            
     
-    public Plateau(String nom1, String nom2){
+    public Plateau(String nom1, String nom2, int taille){
         j1 = new Joueur(nom1, Symbole.CROIX);
         j2 = new Joueur(nom2, Symbole.ROND);
+        setPlateau(taille);
         nbCasesCochees = 0;
     }
     
@@ -35,7 +36,7 @@ public class Plateau {
         
         for (int i=0; i<n; i++) {
             for (int j = 0; j < n; j++) {
-                cases.add(new Case(i+1, j+1, null));
+                //cases.add(new Case(i+1, j+1, null));
                 matriceCroix[i][j] = 0;
                 matriceRond[i][j] = 0;
 
