@@ -47,7 +47,7 @@ public class Controle implements Observer{
         vue.setTitle("MORPION");       
     }
     
-    public void accueil() {
+    public void start() {
         panelActif = new VueAcceuil().getMainPanel();
         vue.add(panelActif);
         vue.setVisible(true);
@@ -144,8 +144,7 @@ public class Controle implements Observer{
     public void update(Observable observable, Object obj) {
         if (observable instanceof VueAcceuil){
             if(obj instanceof ModeDeJeu){
-                plateau = new Plateau();
-                plateau.setModeJeu((ModeDeJeu) obj);                
+                plateau = new Plateau((ModeDeJeu) obj);                
                 
             }
             // bouton regle
@@ -173,7 +172,7 @@ public class Controle implements Observer{
      * @param panelActif the panelActif to set
      */
     public void switchVueActive() {
-        
+        vue.
     }    
 }
 

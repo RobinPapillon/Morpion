@@ -14,8 +14,9 @@ public class Plateau {
     private ModeDeJeu modeJeu;
            
     
-    public Plateau(){
-        this.nbCasesCochees = 0;  
+    public Plateau(ModeDeJeu m){
+        this.nbCasesCochees = 0;
+        setModeJeu(m);       
     }
     
     public void setPlateau(int n){

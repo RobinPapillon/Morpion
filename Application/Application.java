@@ -21,6 +21,6 @@ import javax.swing.JFrame;
 public class Application {
     public static void main(String [] args){
         Controle c = new Controle();
-        c.accueil();
+        c.start();
     }
 }
