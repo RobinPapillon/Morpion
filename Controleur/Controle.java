@@ -41,6 +41,10 @@ public class Controle implements Observer{
     private String vueCourante;
     private String vueCourante2; //vue courante n-1
     
+    private ArrayList<Plateau> listeMatchs = new ArrayList<Plateau>();
+    
+    private int nbPartie;
+    
     
     public Controle(){
         vueAcceuil = new VueAcceuil();
@@ -247,8 +251,23 @@ public class Controle implements Observer{
                         } else{
                             currentJ = j2;
                         }
+                    } 
+                } else if (vueCourante2 == "vueTournoi") {
+                    listeMatchs = creerTournoi(noms, tailleSelect);
+                    plateau = listeMatchs.get(0);
+                    vueMorpion = new VueMorpion(plateau.getJ1().getPseudo(), 
+                                        plateau.getJ2().getPseudo(), tailleSelect);
+                    vueMorpion.addObserver(this);
+                    vueParam.close();
+                    vueMorpion.afficher();
+                    if (plateau.getNbCasesCochees() == 0) {
+                        if (vueMorpion.getS() == j1.getSymbole()) {
+                            currentJ = j1;
+                        } else{
+                            currentJ = j2;
+                        }
                     }
-                    
+                    nbPartie = 1;
                 }
                 break;
                  
@@ -282,6 +301,24 @@ public class Controle implements Observer{
                          vueFinDuel.addObserver(this);
                          vueDuel.close();
                          vueFinDuel.afficher();
+                     } else if (vueCourante2 == "vueTournoi") {
+                         tailleSelect = vueParam.getTailleSelect();
+                         if (nbPartie < (tailleSelect * (tailleSelect - 1))/2) {
+                             nbPartie++;
+                             plateau = listeMatchs.get(nbPartie-1);
+                            vueMorpion = new VueMorpion(plateau.getJ1().getPseudo(), 
+                                                plateau.getJ2().getPseudo(), tailleSelect);
+                            vueMorpion.addObserver(this);
+                            vueParam.close();
+                            vueMorpion.afficher();
+                            if (plateau.getNbCasesCochees() == 0) {
+                                if (vueMorpion.getS() == j1.getSymbole()) {
+                                    currentJ = j1;
+                                } else{
+                                    currentJ = j2;
+                                }
+                            }
+                         }
                      }
                  }
                  break;
