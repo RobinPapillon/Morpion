@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.MouseInputListener;
 import Morpion.*;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class VueMorpion extends Observable{
@@ -33,6 +34,8 @@ public class VueMorpion extends Observable{
     private ArrayList<Bouton> buttons = new ArrayList<>(); 
     private final JFrame window;
     private Symbole s;
+    private Random rand = new Random();
+    private int random;
     
     
     public VueMorpion(String pseudo1, String pseudo2, int n){
@@ -44,6 +47,14 @@ public class VueMorpion extends Observable{
         window.setTitle("MORPION");
         mainPanel = new JPanel(new BorderLayout());
         window.add(mainPanel);
+        
+        random = rand.nextInt(2);
+        if (random == 0) {
+            this.s = Symbole.CROIX;
+        } else {
+            this.s = Symbole.ROND;
+        }
+        
         
         // =================================================================================
         // NORD
@@ -94,8 +105,14 @@ public class VueMorpion extends Observable{
                 public void mouseClicked(MouseEvent e) {
                     setChanged();
                     Font f = new Font("arial", 0, 90);
-                    bTemp.setText("O");
-                    bTemp.setForeground(Color.blue);
+                    
+                    if (VueMorpion.this.s == Symbole.ROND) {
+                        bTemp.setText("O");
+                        bTemp.setForeground(Color.blue);
+                    } else {
+                        bTemp.setText("X");
+                        bTemp.setForeground(Color.red);
+                    }
                     bTemp.setFont(f);
                     bTemp.setBackground(Color.white);
                     b.setBool(true);
@@ -115,8 +132,13 @@ public class VueMorpion extends Observable{
                 public void mouseEntered(MouseEvent e) {
                     if (b.getBool() == false) {
                         Font f = new Font("arial", 0, 90);
+                        if (VueMorpion.this.s == Symbole.ROND) {
                         bTemp.setText("O");
                         bTemp.setForeground(Color.blue);
+                    } else {
+                        bTemp.setText("X");
+                        bTemp.setForeground(Color.red);
+                    }
                         bTemp.setFont(f);
                         bTemp.setBackground(Color.LIGHT_GRAY);
                     }
