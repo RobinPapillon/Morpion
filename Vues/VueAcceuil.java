@@ -144,7 +144,7 @@ public class VueAcceuil extends Observable{
         return mainPanel;
     }
     
-        public static void main(String [] args) {
+    public static void main(String [] args) {
         VueAcceuil exemple1 = new VueAcceuil();
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -155,5 +155,11 @@ public class VueAcceuil extends Observable{
         window.add(exemple1.getMainPanel());
         window.setVisible(true);
    }
+    public void afficher(){
+       this.window.setVisible(true);
+    }
     
+    public void close() {
+        window.dispose();
+    }
 }

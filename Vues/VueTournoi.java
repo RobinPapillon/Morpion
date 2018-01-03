@@ -155,7 +155,13 @@ public class VueTournoi extends Observable{
         return mainPanel;
     }
         
-        
+    public void afficher(){
+       this.window.setVisible(true);
+    }
+    
+    public void close() {
+        window.dispose();
+    }   
 
     }
  

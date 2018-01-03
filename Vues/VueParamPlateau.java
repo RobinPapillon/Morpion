@@ -31,10 +31,9 @@ import Morpion.Bouton;
 public class VueParamPlateau extends Observable{
     private JPanel mainPanel ;
     private HashMap<Integer, JRadioButton> ensembleDesBoutonsRadios ;
-    private int tailleSelectione =3;
+    private int tailleSelectione = 3;
     
     public VueParamPlateau(){
-        
         
         JPanel mainPanel = new JPanel(new BorderLayout());
        
@@ -135,6 +134,14 @@ public class VueParamPlateau extends Observable{
      */
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+    
+    public void afficher(){
+       this.window.setVisible(true);
+    }
+    
+    public void close() {
+        window.dispose();
     }
     
     

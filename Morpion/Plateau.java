@@ -15,8 +15,7 @@ public class Plateau {
            
     
     public Plateau(){
-        this.nbCasesCochees = 0;
-        
+        this.nbCasesCochees = 0;  
     }
     
     public void setPlateau(int n){

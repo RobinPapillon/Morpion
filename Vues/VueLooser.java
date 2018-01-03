@@ -84,4 +84,12 @@ public class VueLooser extends Observable{
     public JPanel getMainPanel() {
         return mainPanel;
     }
+    
+    public void afficher(){
+       this.window.setVisible(true);
+    }
+    
+    public void close() {
+        window.dispose();
+    }
 }
