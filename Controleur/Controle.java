@@ -68,10 +68,11 @@ public class Controle implements Observer{
     public void joueurSuivant(){
         if (getCurrentJ() == getJ1()) {
             setCurrentJ(getJ2());
-            vueMorpion.setCurrentJoueur(getCurrentJ().getSymbole());
         } else{
             setCurrentJ(getJ1());
+            
         }
+        vueMorpion.setCurrentJoueur(getCurrentJ().getSymbole());
     }
     
     public String resultat(int x, int y) // n coté du morpion 
