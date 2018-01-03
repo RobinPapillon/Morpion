@@ -56,6 +56,7 @@ public class Controle implements Observer{
         Symbole s = getCurrentJ().getSymbole();
         int x = b.getX();
         int y = b.getY();
+        
         plateau.addCaseCoche();
         if (s == Symbole.CROIX){
             plateau.ajoutMatriceCroix(x, y);
@@ -131,6 +132,7 @@ public class Controle implements Observer{
      */
     public void setJ2(Joueur j2) {
         this.j2 = j2;
+        this.j1.setSymbole(Symbole.ROND);
     }
 
     /**
@@ -234,6 +236,14 @@ public class Controle implements Observer{
                     vueMorpion.addObserver(this);
                     vueParam.close();
                     vueMorpion.afficher();
+                    
+                    if (plateau.getNbCasesCochees() == 0) {
+                        if (vueMorpion.getS() == j1.getSymbole()) {
+                            currentJ = j1;
+                        } else{
+                            currentJ = j2;
+                        }
+                    }
                 }
                 break;
                  

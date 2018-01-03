@@ -106,7 +106,7 @@ public class VueMorpion extends Observable{
                     setChanged();
                     Font f = new Font("arial", 0, 90);
                     
-                    if (VueMorpion.this.s == Symbole.ROND) {
+                    if (VueMorpion.this.getS() == Symbole.ROND) {
                         bTemp.setText("O");
                         bTemp.setForeground(Color.blue);
                     } else {
@@ -132,7 +132,7 @@ public class VueMorpion extends Observable{
                 public void mouseEntered(MouseEvent e) {
                     if (b.getBool() == false) {
                         Font f = new Font("arial", 0, 90);
-                        if (VueMorpion.this.s == Symbole.ROND) {
+                        if (VueMorpion.this.getS() == Symbole.ROND) {
                         bTemp.setText("O");
                         bTemp.setForeground(Color.blue);
                     } else {
@@ -202,5 +202,12 @@ public class VueMorpion extends Observable{
     
     public void close() {
         window.dispose();
+    }
+
+    /**
+     * @return the s
+     */
+    public Symbole getS() {
+        return this.s;
     }
 }
