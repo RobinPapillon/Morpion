@@ -28,7 +28,7 @@ import morpion.Joueur;
  * @author damien
  */
 public class VueFinDuel extends Observable{
-    private final JFrame window ;
+    private final JPanel mainPanel ;
     private JButton boutonRejouer;
     private JButton boutonRage;
     private JLabel bienvenue;
@@ -37,16 +37,9 @@ public class VueFinDuel extends Observable{
     
     
     public VueFinDuel(String gagnant, String perdant){
-        Font f = new Font("arial", 0, 50);
-        window = new JFrame();
-        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        window.setSize(600, 400);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
-        window.setTitle("MORPION");
-        
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        window.add(mainPanel) ;
+        Font f = new Font("arial", 0, 50); 
+        mainPanel = new JPanel(new BorderLayout());
+
         
         // =================================================================================
         // NORD
@@ -100,17 +93,24 @@ public class VueFinDuel extends Observable{
 
     }
     
-    public void afficher() {
-        this.window.setVisible(true);
-    }
-    
-    public void fermer() {
-        this.window.setVisible(false);
-    }
-    
-    public static void main(String [] args) {
-        VueFinDuel exemple1 = new VueFinDuel("Thomas", "Damien");
-        exemple1.afficher();
+        public static void main(String [] args) {
+        VueFinDuel exemple1 = new VueFinDuel("Thomas","Damien");
+        JFrame window = new JFrame();
+        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        window.setSize(700, 500);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
+        window.setTitle("MORPION");
+        window.add(exemple1.getMainPanel());
+        window.setVisible(true);
    }
+
+    /**
+     * @return the mainPanel
+     */
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
     
 }

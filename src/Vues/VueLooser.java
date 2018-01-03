@@ -13,21 +13,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class VueLooser extends Observable{
-    private final JFrame window ;
+    private final JPanel mainPanel ;
     private JButton boutonValider;
     private JLabel looser;
     
     public VueLooser(){
         Font f = new Font("arial", 0, 100);
-        window = new JFrame();
-        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        window.setSize(600, 400);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
-        window.setTitle("MORPION");
+       
         
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        window.add(mainPanel) ;
+        mainPanel = new JPanel(new BorderLayout());
+    
         
         // =================================================================================
         // NORD
@@ -69,16 +64,24 @@ public class VueLooser extends Observable{
         panelBas.add(boutonValider);
     }
     
-    public void afficher() {
-        this.window.setVisible(true);
-    }
+
     
-    public void fermer() {
-        this.window.setVisible(false);
-    }
-    
-    public static void main(String [] args) {
+        public static void main(String [] args) {
         VueLooser exemple1 = new VueLooser();
-        exemple1.afficher();
+        JFrame window = new JFrame();
+        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        window.setSize(700, 500);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
+        window.setTitle("MORPION");
+        window.add(exemple1.getMainPanel());
+        window.setVisible(true);
    }
+
+    /**
+     * @return the mainPanel
+     */
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
 }

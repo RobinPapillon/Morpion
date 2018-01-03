@@ -25,7 +25,7 @@ import javax.swing.JTextField;
  * @author damien
  */
 public class VueTournoi extends Observable{
-    private final JFrame window ;
+    private final JPanel mainPanel ;
     private JButton boutonValider;
     private JButton boutonRetour;
     private JLabel titre;
@@ -35,15 +35,9 @@ public class VueTournoi extends Observable{
     
     public VueTournoi(){
         Font f = new Font("arial", 0, 50);
-        window = new JFrame();
-        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        window.setSize(600, 400);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
-        window.setTitle("MORPION");
-        
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        window.add(mainPanel) ;
+
+        mainPanel = new JPanel(new BorderLayout());
+    
         
         // =================================================================================
         // NORD
@@ -142,18 +136,27 @@ public class VueTournoi extends Observable{
             
         }
     }
-    
-    public void afficher() {
-        this.window.setVisible(true);
-    }
-    
-    public void fermer() {
-        this.window.setVisible(false);
-    }
-    
-    public static void main(String [] args) {
+        public static void main(String [] args) {
         VueTournoi exemple1 = new VueTournoi();
-        exemple1.afficher();
+        JFrame window = new JFrame();
+        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        window.setSize(700, 500);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
+        window.setTitle("MORPION");
+        window.add(exemple1.getMainPanel());
+        window.setVisible(true);
    }
-    
-}
+
+    /**
+     * @return the mainPanel
+     */
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+        
+        
+
+    }
+ 
+
