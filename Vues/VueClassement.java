@@ -76,11 +76,11 @@ public class VueClassement extends Observable{
         JLabel j3 = new JLabel(classement.get(2).getPseudo());
         JLabel j4 = new JLabel();
         JLabel j5 = new JLabel();
-        panelCentre.add(j5);
-        panelCentre.add(j4);
-        panelCentre.add(j3);
-        panelCentre.add(j2);
         panelCentre.add(j1);
+        panelCentre.add(j2);
+        panelCentre.add(j3);
+        panelCentre.add(j4);
+        panelCentre.add(j5);
 
 
 
