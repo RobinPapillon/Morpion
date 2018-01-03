@@ -146,6 +146,19 @@ public class VueParamPlateau extends Observable{
     public void close() {
         window.dispose();
     }
+
+    /**
+     * @return the tailleSelect
+     */
+    public int getTailleSelect() {
+        for (int i = 0; i < 3; i++) {
+            if (ensembleDesBoutonsRadios.get(i).isSelected()) {
+                return i+2;
+            }
+            
+        }
+        return 0;
+    }
     
     
     }
