@@ -11,10 +11,10 @@ public class Plateau {
     private ArrayList<Case> cases;
     private int[][] matriceRond;
     private int[][] matriceCroix;
-    private ModeDeJeu modeJeu;
+    private Message modeJeu;
            
     
-    public Plateau(ModeDeJeu m){
+    public Plateau(Message m){
         this.nbCasesCochees = 0;
         setModeJeu(m);       
     }
@@ -191,14 +191,14 @@ public class Plateau {
     /**
      * @return the modeJeu
      */
-    public ModeDeJeu getModeJeu() {
+    public Message getModeJeu() {
         return modeJeu;
     }
 
     /**
      * @param modeJeu the modeJeu to set
      */
-    public void setModeJeu(ModeDeJeu modeJeu) {
+    public void setModeJeu(Message modeJeu) {
         this.modeJeu = modeJeu;
     }
 }

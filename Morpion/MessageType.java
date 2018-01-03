@@ -10,7 +10,13 @@ package Morpion;
  * @author Thomas
  */
  
-public enum ModeDeJeu {
-    Tournoi,
-    Duel;
+public enum MessageType {
+    TOURNOI,
+    DUEL,
+    REGLE,
+    VALIDER_JOUEURS,
+    VALIDER,
+    EXIT,
+    RETOUR,
+    REJOUER;
 }

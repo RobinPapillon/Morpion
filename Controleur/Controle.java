@@ -5,13 +5,8 @@
  */
 package Controleur;
 
-import Morpion.Plateau;
-import Morpion.Joueur;
-import Morpion.ModeDeJeu;
-import Morpion.Symbole;
-import Vues.VueMorpion;
-import Vues.VueAcceuil;
-import Vues.VueParamPlateau;
+import Morpion.*;
+import Vues.*;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -19,8 +14,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import Morpion.Bouton;
+import javax.swing.JPanel;;
 
 /**
  *
@@ -30,27 +24,28 @@ public class Controle implements Observer{
     
     private Joueur j1 = new Joueur("toto", Symbole.CROIX);
     private Joueur j2 = new Joueur("titi", Symbole.ROND);
-//    private Morpion morpion = new Morpion(j1, j2, 3);
     
     private Joueur currentJ;
     private Plateau plateau;
-    private JFrame vue;
-    private JPanel panelActif;
+    private VueAcceuil vueAcceuil;
+    private VueDuel vueDuel;
+    private VueTournoi vueTournoi;
+    private VueRegle vueRegle;
+    private VueFinDuel vueFinDuel;
+    private VueLooser vueLooser;
+    private VueParamPlateau vueParam;
+    private VueMorpion vueMorpion;
+    
+    private Message lastMessage;
     
     
     public Controle(){
-        vue = new JFrame();
-        vue.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        vue.setSize(700, 500);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        vue.setLocation(dim.width/2-vue.getSize().width/2, dim.height/2-vue.getSize().height/2);
-        vue.setTitle("MORPION");       
+        vueAcceuil = new VueAcceuil();
+        vueAcceuil.addObserver(this);
     }
     
     public void start() {
-        panelActif = new VueAcceuil().getMainPanel();
-        vue.add(panelActif);
-        vue.setVisible(true);
+        vueAcceuil.afficher();
     }
     
     
@@ -142,38 +137,26 @@ public class Controle implements Observer{
     
     @Override
     public void update(Observable observable, Object obj) {
-        if (observable instanceof VueAcceuil){
-            if(obj instanceof ModeDeJeu){
-                plateau = new Plateau((ModeDeJeu) obj);                
-                
-            }
-            // bouton regle
-        }
-        
-        else if (observable instanceof VueParamPlateau){
-            if (obj instanceof JPanel){
-                 plateau.setPlateau(0);
-            }
-        }
-                
-        else if (obj instanceof Bouton) {
-            Bouton bouton = (Bouton) obj;
-            cocherCase(bouton);
-            if (resultat(bouton.getX()-1, bouton.getY()-1)== "Partie Gagne"){
-                
-            }
-        }
-        
-        joueurSuivant(); 
+         Message m = (Message) obj;
+         
+         switch(m.getType()){
+             case EXIT: 
+                 vueAcceuil.close();
+                 break;
+                 
+             case DUEL:
+                 vueDuel = new VueDuel();
+                 vueDuel.addObserver(this);
+                 vueAcceuil.close();
+                 vueDuel.afficher();
+                 break;
+                 
+             case VALIDER_JOUEURS:
+                 MessageNoms mn = (MessageNoms)obj; //interprète le message reçu comme un message contenant une liste de noms 
+                 ArrayList<String> noms = mn.getNoms();
+         }
     }
- 
-
-    /**
-     * @param panelActif the panelActif to set
-     */
-    public void switchVueActive() {
-        vue.
-    }    
+  
 }
 
 

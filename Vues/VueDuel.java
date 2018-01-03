@@ -5,6 +5,7 @@
  */
 package Vues;
 
+import Morpion.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -97,9 +98,8 @@ public class VueDuel extends Observable{
         boutonRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                setChanged();
-                String message = "Taille Plateau";                   
-                notifyObservers(message);
+                setChanged();                   
+                notifyObservers(new Message (MessageType.RETOUR));
                 clearChanged();}
         });
         
@@ -111,9 +111,8 @@ public class VueDuel extends Observable{
         boutonValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                setChanged();
-                String message = "Grille";                   
-                notifyObservers(message);
+                setChanged();                  
+                notifyObservers(new Message (MessageType.VALIDER));
                 clearChanged();}
         });
         

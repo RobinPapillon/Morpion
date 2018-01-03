@@ -5,6 +5,7 @@
  */
 package Vues;
 
+import Morpion.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -18,7 +19,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import Morpion.ModeDeJeu;
  
 
 /**
@@ -72,7 +72,7 @@ public class VueAcceuil extends Observable{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 setChanged();                                   
-                notifyObservers(ModeDeJeu.Duel);
+                notifyObservers(new Message(MessageType.DUEL));
                 clearChanged();}
         });
         
@@ -81,7 +81,7 @@ public class VueAcceuil extends Observable{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 setChanged();                                   
-                notifyObservers(ModeDeJeu.Tournoi);
+                notifyObservers(new Message(MessageType.TOURNOI));
                 clearChanged();}
         });
         boutonRegle = new JButton("Règle");
@@ -89,7 +89,7 @@ public class VueAcceuil extends Observable{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 setChanged();                                   
-                notifyObservers("Regle");
+                notifyObservers(new Message(MessageType.REGLE));
                 clearChanged();}
         });
         for (int i = 0; i <= 5; i++) {
