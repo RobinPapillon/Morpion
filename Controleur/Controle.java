@@ -140,11 +140,11 @@ public class Controle implements Observer{
         return this.plateau;
     }
     
-    public ArrayList<Plateau> creerTournoi (ArrayList<String> noms, int taillePlateau){
+    public ArrayList<Plateau> creerTournoi (ArrayList<String> noms){
         ArrayList<Plateau> listeTournoi = new ArrayList<Plateau>();
         for (int i = 0; i < noms.size()-1; i++) {
             for (int j = i+1; j < noms.size(); j++) {
-                Plateau p = new Plateau(noms.get(i),noms.get(j),taillePlateau);
+                Plateau p = new Plateau(noms.get(i),noms.get(j));
                 listeTournoi.add(p);
             }
         }
@@ -212,13 +212,14 @@ public class Controle implements Observer{
                  if (vueCourante == "vueDuel") {
                     MessageNoms mn = (MessageNoms)obj;
                     noms = mn.getNoms();
+                    Plateau p = new Plateau(noms.get(0), noms.get(1));
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueDuel.close();
                 } else if(vueCourante == "vueTournoi"){
                     MessageNoms mn = (MessageNoms)obj;
                     noms = mn.getNoms();
-                    creerTournoi(noms, vueParam.getTailleSelect());
+                    creerTournoi(noms);
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueTournoi.close();
@@ -259,8 +260,7 @@ public class Controle implements Observer{
                  Bouton b = mb.getB();
                  cocherCase(b);
                  if (resultat(b.getX()-1, b.getY()-1)== "Continue") {
-                     joueurSuivant();
-                     vueMorpion.setCurrentJoueur(currentJ.getSymbole());
+                     joueurSuivant();                    
                  }
                  else if (resultat(b.getX()-1, b.getY()-1)== "Partie Gagné") {
                      if (true) {
