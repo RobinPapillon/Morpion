@@ -26,9 +26,7 @@ import Morpion.ModeDeJeu;
  * @author damien
  */
 public class VueAcceuil extends Observable{
-    private final JPanel mainPanel ;
-    private JButton boutonValider;
-    private JButton boutonRetour;
+    private final JPanel mainPanel;
     private JButton boutonUnContreUn;
     private JButton boutonTournoi;
     private JButton boutonRegle;
