@@ -22,8 +22,8 @@ import javax.swing.JPanel;;
  */
 public class Controle implements Observer{
     
-    private Joueur j1 = new Joueur("toto", Symbole.CROIX);
-    private Joueur j2 = new Joueur("titi", Symbole.ROND);
+    private Joueur j1;
+    private Joueur j2; 
     
     private Joueur currentJ;
     private Plateau plateau;
@@ -192,6 +192,8 @@ public class Controle implements Observer{
                     MessageNoms mn = (MessageNoms)obj; //interprète le message reçu comme un message contenant une liste de noms 
                 
                     ArrayList<String> noms = mn.getNoms();
+                    j1 = new Joueur(noms.get(0),Symbole.CROIX);
+                    j2 = new Joueur(noms.get(1),Symbole.ROND);
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueDuel.close();
@@ -223,7 +225,7 @@ public class Controle implements Observer{
                 int tailleSelect = vueParam.getTailleSelect();
                 System.out.println(tailleSelect);
                 if (vueCourante2 == "vueDuel") {
-                    vueMorpion = new VueMorpion(tailleSelect);
+                    vueMorpion = new VueMorpion(j1.toString(),j2.toString(),tailleSelect);
                     vueMorpion.addObserver(this);
                     vueParam.close();
                     vueMorpion.afficher();
