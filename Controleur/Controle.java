@@ -142,11 +142,11 @@ public class Controle implements Observer{
         return this.plateau;
     }
     
-    public ArrayList<Plateau> creerTournoi (ArrayList<String> noms){
+    public ArrayList<Plateau> creerTournoi (ArrayList<String> noms,int taille){
         ArrayList<Plateau> listeTournoi = new ArrayList<Plateau>();
         for (int i = 0; i < noms.size()-1; i++) {
             for (int j = i+1; j < noms.size(); j++) {
-                Plateau p = new Plateau(noms.get(i),noms.get(j));
+                Plateau p = new Plateau(noms.get(i),noms.get(j), taille);
                 listeTournoi.add(p);
             }
         }
@@ -223,8 +223,7 @@ public class Controle implements Observer{
                     vueDuel.close();
                 } else if(vueCourante == "vueTournoi"){
                     MessageNoms mn = (MessageNoms)obj;
-                    noms = mn.getNoms();
-                    creerTournoi(noms);
+                    noms = mn.getNoms();                    
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueTournoi.close();
@@ -237,6 +236,7 @@ public class Controle implements Observer{
                 int tailleSelect = vueParam.getTailleSelect();
                 if (vueCourante2 == "vueDuel") {
                     vueMorpion = new VueMorpion(noms.get(0),noms.get(1),tailleSelect);
+                    plateau = new Plateau(j1.getPseudo(), j2.getPseudo(), tailleSelect);
                     vueMorpion.addObserver(this);
                     vueParam.close();
                     vueMorpion.afficher();
