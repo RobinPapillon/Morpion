@@ -214,7 +214,10 @@ public class Controle implements Observer{
                  if (vueCourante == "vueDuel") {
                     MessageNoms mn = (MessageNoms)obj;
                     noms = mn.getNoms();
-                    Plateau p = new Plateau(noms.get(0), noms.get(1));
+                    j1 = new Joueur(noms.get(0));
+                    j2 = new Joueur(noms.get(1));
+                     setJ1(j1);
+                     setJ2(j2);
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueDuel.close();
