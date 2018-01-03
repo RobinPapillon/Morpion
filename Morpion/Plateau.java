@@ -12,6 +12,8 @@ public class Plateau {
     private int[][] matriceRond;
     private int[][] matriceCroix;
     private Message modeJeu;
+    private Joueur j1;
+    private Joueur j2;
            
     
     public Plateau(Message m){
@@ -200,5 +202,19 @@ public class Plateau {
      */
     public void setModeJeu(Message modeJeu) {
         this.modeJeu = modeJeu;
+    }
+
+    /**
+     * @return the j1
+     */
+    public Joueur getJ1() {
+        return j1;
+    }
+
+    /**
+     * @return the j2
+     */
+    public Joueur getJ2() {
+        return j2;
     }
 }
