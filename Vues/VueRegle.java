@@ -72,7 +72,7 @@ public class VueRegle extends Observable{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 setChanged();                   
-                notifyObservers(new Message(MessageType.RETOUR));
+                notifyObservers(new Message(MessageType.RETOUR_ACCEUIL));
                 clearChanged();}
         });;
     }

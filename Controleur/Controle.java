@@ -155,6 +155,16 @@ public class Controle implements Observer{
                  vueCourante2 = "vueDuel";
                  break;
                  
+             case FIN_DUEL:
+                 String gagnant;
+                 String perdant;
+                 vueFinDuel = new VueFinDuel(gagnant, perdant);
+                 vueFinDuel.addObserver(this);
+                 vueMorpion.close();
+                 vueFinDuel.afficher();
+                 vueCourante = "vueFinDuel";
+                 break;
+                 
              case RETOUR_ACCEUIL:
                  if (vueCourante == "vueDuel") {
                      vueDuel.close();
@@ -182,25 +192,26 @@ public class Controle implements Observer{
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueDuel.close();
-                    
-                    } else if(vueCourante == "vueTournoi"){
-                        if (vueTournoi.getNumListeDeroulante() == 3) {
-                            String joueur1 = "";
-                            String joueur2 = "";
-                            String joueur3 = "";
-                        }else if (vueTournoi.getNumListeDeroulante() == 4) {
-                            String joueur1 = "";
-                            String joueur2 = "";
-                            String joueur3 = "";
-                            String joueur4 = "";
-                        }else{
-                            String joueur1 = "";
-                            String joueur2 = "";
-                            String joueur3 = "";
-                            String joueur4 = "";
-                            String joueur5 = "";
-                        }
-                        vueTournoi.close();
+                } else if(vueCourante == "vueTournoi"){
+                    vueParam = new VueParamPlateau();
+                    vueParam.addObserver(this);
+                    vueTournoi.close();
+                    if (vueTournoi.getNumListeDeroulante() == 3) {
+                        String joueur1 = "";
+                        String joueur2 = "";
+                        String joueur3 = "";
+                    }else if (vueTournoi.getNumListeDeroulante() == 4) {
+                        String joueur1 = "";
+                        String joueur2 = "";
+                        String joueur3 = "";
+                        String joueur4 = "";
+                    }else{
+                        String joueur1 = "";
+                        String joueur2 = "";
+                        String joueur3 = "";
+                        String joueur4 = "";
+                        String joueur5 = "";
+                    }
                 }
                  vueParam.afficher();
                  break;
@@ -211,7 +222,6 @@ public class Controle implements Observer{
                  vueAcceuil.close();
                  vueRegle.afficher();
                  vueCourante = "vueRegle";
-                 vueCourante2 = "vueAcceuil";
                  break;
                  
              case RETOUR:
@@ -220,15 +230,9 @@ public class Controle implements Observer{
                      vueDuel.afficher();
                  } else if (vueCourante2 == "vueTournoi") {
                      vueTournoi.afficher();
-                 } else{
-                     vueAcceuil.afficher();
                  }
+                 break;
          }
     }
   
 }
-
-
-
-
-
