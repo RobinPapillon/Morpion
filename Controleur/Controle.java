@@ -250,8 +250,17 @@ public class Controle implements Observer{
                  break;
             
              case BOUTON:
-//                 Bouton b = (MessageBouton) obj;
-//                 cocherCase(m)
+                 MessageBouton mb = (MessageBouton) obj;
+                 Bouton b = mb.getB();
+                 cocherCase(b);
+                 if (resultat(b.getX()-1, b.getY()-1)== "Continue") {
+                     joueurSuivant();
+                 }
+                 else if (resultat(b.getX()-1, b.getY()-1)== "Partie Gagné") {
+                     if (true) {
+                         
+                     }
+                 }
          }
     }
   
