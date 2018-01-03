@@ -166,7 +166,7 @@ public class Controle implements Observer{
                  vueAcceuil.afficher();
                  break;
                  
-             case TOURNOI:
+            case TOURNOI:
                  vueTournoi = new VueTournoi();
                  vueTournoi.addObserver(this);
                  vueAcceuil.close();
@@ -175,22 +175,34 @@ public class Controle implements Observer{
                  vueCourante2 = "vueTournoi";
                  break;
                  
-             case VALIDER_JOUEURS:
+            case VALIDER_JOUEURS:
                  if (vueCourante == "vueDuel") {
                     String joueur1 = "";
                     String joueur2 = "";
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueDuel.close();
-                    vueParam.afficher();
-                 } else if(vueCourante == "vueTournoi"){
-                     if (vueTournoi.getListeDeroulante() == 3) {
-                         for (int i = 1; i <= 3; i++) {
-                             
-                         }
-                     }
-                 }
-                 
+                    
+                    } else if(vueCourante == "vueTournoi"){
+                        if (vueTournoi.getNumListeDeroulante() == 3) {
+                            String joueur1 = "";
+                            String joueur2 = "";
+                            String joueur3 = "";
+                        }else if (vueTournoi.getNumListeDeroulante() == 4) {
+                            String joueur1 = "";
+                            String joueur2 = "";
+                            String joueur3 = "";
+                            String joueur4 = "";
+                        }else{
+                            String joueur1 = "";
+                            String joueur2 = "";
+                            String joueur3 = "";
+                            String joueur4 = "";
+                            String joueur5 = "";
+                        }
+                        vueTournoi.close();
+                }
+                 vueParam.afficher();
                  break;
                  
              case REGLE:
@@ -199,6 +211,7 @@ public class Controle implements Observer{
                  vueAcceuil.close();
                  vueRegle.afficher();
                  vueCourante = "vueRegle";
+                 vueCourante2 = "vueAcceuil";
                  break;
                  
              case RETOUR:
@@ -207,6 +220,8 @@ public class Controle implements Observer{
                      vueDuel.afficher();
                  } else if (vueCourante2 == "vueTournoi") {
                      vueTournoi.afficher();
+                 } else{
+                     vueAcceuil.afficher();
                  }
          }
     }

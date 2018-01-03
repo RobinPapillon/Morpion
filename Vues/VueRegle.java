@@ -1,11 +1,15 @@
 package Vues;
 
+import Morpion.Message;
+import Morpion.MessageType;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -64,6 +68,13 @@ public class VueRegle extends Observable{
         boutonValider = new JButton("Retour");
         panelBas.add(new JLabel());
         panelBas.add(boutonValider);
+        boutonValider.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                setChanged();                   
+                notifyObservers(new Message(MessageType.RETOUR));
+                clearChanged();}
+        });;
     }
     
 

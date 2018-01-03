@@ -30,7 +30,7 @@ public class VueTournoi extends Observable{
     /**
      * @return the listeDeroulante
      */
-    public int getListeDeroulante() {
+    public int getNumListeDeroulante() {
         if (listeDeroulante.getSelectedIndex() == 0) {
             return 3;
         } else if (listeDeroulante.getSelectedIndex() == 1) {
@@ -145,7 +145,7 @@ public class VueTournoi extends Observable{
     
     private void updateNbr(){
         for (int i = 0; i < 10; i+=2) {
-            if(i < (getListeDeroulante().getSelectedIndex() + 3) * 2){
+            if(i < (listeDeroulante.getSelectedIndex() + 3) * 2){
                 panelJoueurs.getComponent(i).setVisible(true);
                 panelJoueurs.getComponent(i+1).setVisible(true);
             }
