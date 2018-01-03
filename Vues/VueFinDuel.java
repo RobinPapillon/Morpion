@@ -72,12 +72,7 @@ public class VueFinDuel extends Observable{
         JPanel panelCentre = new JPanel(new GridLayout(3,5));
         mainPanel.add(panelCentre, BorderLayout.CENTER);
         boutonRejouer = new JButton("Rejouer");
-        boutonRage = new JButton();
-        boutonRage.setLayout(new GridLayout(4,1));
-            boutonRage.add(new JLabel());
-            boutonRage.add(new JLabel("Rage quit de"));
-            boutonRage.add(new JLabel(perdant));
-            boutonRage.add(new JLabel());
+        boutonRage = new JButton("Retour");
         for (int i = 0; i <= 5; i++) {
             panelCentre.add(new JLabel());
         }
@@ -89,9 +84,6 @@ public class VueFinDuel extends Observable{
         for (int i = 0; i <= 5; i++) {
             panelCentre.add(new JLabel());
         }
-        
-        
-  
         
         
         // =================================================================================

@@ -16,7 +16,9 @@ public enum MessageType {
     REGLE,
     VALIDER_JOUEURS,
     VALIDER,
+    VALIDER_TAILLE,
     EXIT,
     RETOUR,
-    REJOUER;
+    REJOUER,
+    RETOUR_ACCEUIL;
 }

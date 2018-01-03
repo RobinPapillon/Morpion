@@ -22,7 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import Morpion.Bouton;
+import Morpion.*;
 
 /**
  *
@@ -31,7 +31,6 @@ import Morpion.Bouton;
 public class VueParamPlateau extends Observable{
     private JPanel mainPanel ;
     private HashMap<Integer, JRadioButton> ensembleDesBoutonsRadios ;
-    private int tailleSelectione = 3;
     private final JFrame window;
     
     public VueParamPlateau(){
@@ -102,7 +101,7 @@ public class VueParamPlateau extends Observable{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 setChanged();                                  
-                notifyObservers("Acceuil");
+                notifyObservers(new Message(MessageType.RETOUR_ACCEUIL));
                 clearChanged();}
         });
         
@@ -114,17 +113,14 @@ public class VueParamPlateau extends Observable{
         boutonValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                setChanged();                
-                notifyObservers(tailleSelectione);
+                setChanged();               
+                notifyObservers(new Message(MessageType.VALIDER_TAILLE));
                 clearChanged();}
         });
         
         panelBas.add(boutonValider);
         
-        
-        
     }
-
     
         public static void main(String [] args) {
         VueParamPlateau exemple1 = new VueParamPlateau();

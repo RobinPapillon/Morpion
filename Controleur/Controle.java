@@ -32,7 +32,6 @@ public class Controle implements Observer{
     private VueTournoi vueTournoi;
     private VueRegle vueRegle;
     private VueFinDuel vueFinDuel;
-    private VueLooser vueLooser;
     private VueParamPlateau vueParam;
     private VueMorpion vueMorpion;
     

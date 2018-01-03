@@ -15,11 +15,9 @@ import javax.swing.JPanel;
 public class VueRegle extends Observable{
     private final JPanel mainPanel ;
     private JButton boutonValider;
-    private JLabel looser;
     private final JFrame window;
     
     public VueRegle(){
-        Font f = new Font("arial", 0, 40);
        
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -50,12 +48,9 @@ public class VueRegle extends Observable{
         // CENTRE
         JPanel panelCentre = new JPanel(new GridLayout(3,1));
         mainPanel.add(panelCentre, BorderLayout.CENTER);
+        panelCentre.add(new JLabel("Pour gagner au morpion il faut aligner autant de symbole"
+                , JLabel.LEFT));
         panelCentre.add(new JLabel());
-        looser = new JLabel("Pour gagner au morpion il faut "
-                            + "aligner autant de symbole", JLabel.CENTER);
-        panelCentre.add(looser);
-        looser.setFont(f);
-        looser.setForeground(Color.red);
         panelCentre.add(new JLabel());
         
         // =================================================================================
@@ -66,9 +61,8 @@ public class VueRegle extends Observable{
         panelBas.add(new JLabel());
         
         
-        boutonValider = new JButton("Valider");
+        boutonValider = new JButton("Retour");
         panelBas.add(new JLabel());
-        
         panelBas.add(boutonValider);
     }
     

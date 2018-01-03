@@ -25,7 +25,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.MouseInputListener;
-import Morpion.Bouton;
+import Morpion.*;
 
 public class VueMorpion extends Observable{
     private final JPanel mainPanel ;
@@ -139,9 +139,8 @@ public class VueMorpion extends Observable{
         btnRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                setChanged();
-                String message = "Recommencer";                   
-                notifyObservers(message);
+                setChanged();                  
+                notifyObservers(new Message(MessageType.RETOUR_ACCEUIL));
                 clearChanged();}
         });
         
