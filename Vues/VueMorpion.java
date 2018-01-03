@@ -105,7 +105,6 @@ public class VueMorpion extends Observable{
                 public void mouseClicked(MouseEvent e) {
                     setChanged();
                     Font f = new Font("arial", 0, 90);
-                    
                     if (VueMorpion.this.getS() == Symbole.ROND) {
                         bTemp.setText("O");
                         bTemp.setForeground(Color.blue);
@@ -167,10 +166,10 @@ public class VueMorpion extends Observable{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 JOptionPane jop = new JOptionPane();
-                int option = jop.showConfirmDialog(null, "Etes-vous sûre de retourner au menu ?", "Retour au menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                int option = jop.showConfirmDialog(null, "Etes-vous sûre de retourner au menu ?", 
+                        "Retour au menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (option == JOptionPane.OK_OPTION) {
                     
-                
                 setChanged();                  
                 notifyObservers(new Message(MessageType.RETOUR_ACCEUIL));
                 clearChanged();}
@@ -184,7 +183,7 @@ public class VueMorpion extends Observable{
         
     }
     
-    public void setCurrentJoueur(Symbole s){
+    public void setCurrentSymbole(Symbole s){
         this.s = s;
     }
     

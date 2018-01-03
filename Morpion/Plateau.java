@@ -21,6 +21,7 @@ public class Plateau {
         j2 = new Joueur(nom2, Symbole.ROND);
         setPlateau(taille);
         nbCasesCochees = 0;
+        
     }
     
     public Plateau(Message m){
@@ -30,7 +31,7 @@ public class Plateau {
     
     public void setPlateau(int n){
         setCote(n);
-        setNbCase(n^2);
+        setNbCase(n);
         this.matriceRond = new int[n][n];
         this.matriceCroix = new int [n][n];
         
@@ -54,27 +55,27 @@ public class Plateau {
         
         int total = 0;
         // verification ligne       
-        for (int j = 0; j< getCote(); j++){
+        for (int j = 0; j < getCote(); j++){
             total += matriceCroix[x][j];
         }
         // verification colonne
         if (total < getCote()){
             total = 0;
-            for (int i = 0; i< getCote(); i++){
+            for (int i = 0; i < getCote(); i++){
                 total += matriceCroix[i][y];
             }
         }
         // verification diagonale principale
         if (total < getCote() && x==y){
             total = 0;
-            for (int i = 0; i< getCote(); i++){
+            for (int i = 0; i < getCote(); i++){
                 total += matriceCroix[i][i];
             }
         }
         // verification anti-diagonale
         if (total < getCote() && x+y+1 == getCote()){
             total = 0;
-            for (int i =0; i< getCote(); i++){
+            for (int i = 0; i < getCote(); i++){
                 total+= matriceCroix[getCote()-1-i][i];
             }
         }
@@ -85,27 +86,28 @@ public class Plateau {
         
         int total = 0;
         // verification ligne       
-        for (int j = 0; j< getCote(); j++){
+        for (int j = 0; j < getCote(); j++){
             total += matriceRond[x][j];
         }
+        
         // verification colonne
         if (total < getCote()){
             total = 0;
-            for (int i = 0; i< getCote(); i++){
+            for (int i = 0; i < getCote(); i++){
                 total += matriceRond[i][y];
             }
         }
         // verification diagonale principale
-        if (total < getCote() && x==y){
+        if (total < getCote() && x == y){
             total = 0;
-            for (int i = 0; i< getCote(); i++){
+            for (int i = 0; i < getCote(); i++){
                 total += matriceRond[i][i];
             }
         }
         // verification anti-diagonale
         if (total < getCote() && x+y+1 == getCote()){
             total = 0;
-            for (int i =0; i< getCote(); i++){
+            for (int i = 0; i < getCote(); i++){
                 total+= matriceRond[getCote()-1-i][i];
             }
         }
@@ -138,7 +140,7 @@ public class Plateau {
      * @param nbCase the nbCase to set
      */
     public void setNbCase(int nbCase) {
-        this.nbCases = nbCase;
+        this.nbCases = nbCase * nbCase;
     }
 
     /**

@@ -54,10 +54,9 @@ public class Controle implements Observer{
     
     public void cocherCase(Bouton b){
         Symbole s = getCurrentJ().getSymbole();
-        int x = b.getX();
-        int y = b.getY();
+        int x = b.getX()-1;
+        int y = b.getY()-1;
         
-        plateau = new Plateau(j1.getPseudo(), j2.getPseudo());
         plateau.addCaseCoche();
         
         if (s == Symbole.CROIX){
@@ -71,15 +70,15 @@ public class Controle implements Observer{
     public void joueurSuivant(){
         if (getCurrentJ() == getJ1()) {
             setCurrentJ(getJ2());
+            
         } else{
             setCurrentJ(getJ1());
             
         }
-        vueMorpion.setCurrentJoueur(getCurrentJ().getSymbole());
+        vueMorpion.setCurrentSymbole(getCurrentJ().getSymbole());
     }
     
-    public String resultat(int x, int y) // n coté du morpion 
-    {
+    public String resultat(int x, int y){ // n coté du morpion
         
         Symbole s = getCurrentJ().getSymbole();
         if (s == Symbole.CROIX && plateau.verifCroix(x,y) || s == Symbole.ROND && plateau.verifRond(x,y) ){
@@ -119,7 +118,6 @@ public class Controle implements Observer{
     public void setJ1(Joueur j1) {
         this.j1 = j1;
         this.j1.setSymbole(Symbole.CROIX);
-        
     }
 
     /**
@@ -134,7 +132,7 @@ public class Controle implements Observer{
      */
     public void setJ2(Joueur j2) {
         this.j2 = j2;
-        this.j1.setSymbole(Symbole.ROND);
+        this.j2.setSymbole(Symbole.ROND);
     }
 
     /**
@@ -243,12 +241,14 @@ public class Controle implements Observer{
                     vueMorpion.addObserver(this);
                     vueParam.close();
                     vueMorpion.afficher();
-                    
-                    if (vueMorpion.getS() == j1.getSymbole()) {
-                        currentJ = j1;
-                    } else{
-                        currentJ = j2;
+                    if (plateau.getNbCasesCochees() == 0) {
+                        if (vueMorpion.getS() == j1.getSymbole()) {
+                            currentJ = j1;
+                        } else{
+                            currentJ = j2;
+                        }
                     }
+                    
                 }
                 break;
                  
@@ -269,18 +269,38 @@ public class Controle implements Observer{
                  }
                  break;
             
-             case BOUTON:
+            case BOUTON:
                  MessageBouton mb = (MessageBouton) obj;
                  Bouton b = mb.getB();
                  cocherCase(b);
                  if (resultat(b.getX()-1, b.getY()-1)== "Continue") {
                      joueurSuivant();                    
                  }
-                 else if (resultat(b.getX()-1, b.getY()-1)== "Partie Gagné") {
-                     if (true) {
-                         
+                 else if (resultat(b.getX()-1, b.getY()-1)== "Partie Gagne") {
+                     if (vueCourante2 == "vueDuel") {
+                         vueFinDuel = new VueFinDuel(currentJ);
+                         vueFinDuel.addObserver(this);
+                         vueDuel.close();
+                         vueFinDuel.afficher();
                      }
                  }
+                 break;
+                 
+            case REJOUER:
+                tailleSelect = vueParam.getTailleSelect();
+                vueMorpion = new VueMorpion(noms.get(0),noms.get(1),tailleSelect);
+                plateau = new Plateau(j1.getPseudo(), j2.getPseudo(), tailleSelect);
+                vueMorpion.addObserver(this);
+                vueFinDuel.close();
+                vueMorpion.afficher();
+                if (plateau.getNbCasesCochees() == 0) {
+                    if (vueMorpion.getS() == j1.getSymbole()) {
+                        currentJ = j1;
+                    } else{
+                        currentJ = j2;
+                    }
+                }
+                break;
          }
     }
   

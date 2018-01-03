@@ -30,7 +30,7 @@ import Morpion.*;
 public class VueFinDuel extends Observable{
     private final JPanel mainPanel ;
     private JButton boutonRejouer;
-    private JButton boutonRage;
+    private JButton boutonRetour;
     private JLabel bienvenue;
     private String pseudoGagnant;
     private final JFrame window ;
@@ -72,14 +72,31 @@ public class VueFinDuel extends Observable{
         JPanel panelCentre = new JPanel(new GridLayout(3,5));
         mainPanel.add(panelCentre, BorderLayout.CENTER);
         boutonRejouer = new JButton("Rejouer");
-        boutonRage = new JButton("Retour");
+        boutonRetour = new JButton("Retour");
         for (int i = 0; i <= 5; i++) {
             panelCentre.add(new JLabel());
         }
         
         panelCentre.add(boutonRejouer);
+        boutonRejouer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setChanged();
+                notifyObservers(new Message (MessageType.REJOUER));
+                clearChanged();
+            }
+
+        });
         panelCentre.add(new JLabel());
-        panelCentre.add(boutonRage);
+        panelCentre.add(boutonRetour);
+        boutonRetour.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setChanged();
+                notifyObservers(new Message (MessageType.RETOUR_ACCEUIL));
+                clearChanged();
+            }
+        });
         
         for (int i = 0; i <= 5; i++) {
             panelCentre.add(new JLabel());
