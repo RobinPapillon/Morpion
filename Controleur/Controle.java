@@ -163,6 +163,8 @@ public class Controle implements Observer{
                      vueMorpion.close();
                      vueFinDuel.afficher();
                      vueCourante = "vueFinDuel";
+                 }else if (vueCourante2 == "vueTournoi") {
+                     
                  }
                  
                  break;
