@@ -214,10 +214,10 @@ public class Controle implements Observer{
                  if (vueCourante == "vueDuel") {
                     MessageNoms mn = (MessageNoms)obj;
                     noms = mn.getNoms();
-                    Plateau p = new Plateau(noms.get(0), noms.get(1));
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueDuel.close();
+                    
                 } else if(vueCourante == "vueTournoi"){
                     MessageNoms mn = (MessageNoms)obj;
                     noms = mn.getNoms();
@@ -238,12 +238,10 @@ public class Controle implements Observer{
                     vueParam.close();
                     vueMorpion.afficher();
                     
-                    if (plateau.getNbCasesCochees() == 0) {
-                        if (vueMorpion.getS() == j1.getSymbole()) {
-                            currentJ = j1;
-                        } else{
-                            currentJ = j2;
-                        }
+                    if (vueMorpion.getS() == j1.getSymbole()) {
+                        currentJ = j1;
+                    } else{
+                        currentJ = j2;
                     }
                 }
                 break;
