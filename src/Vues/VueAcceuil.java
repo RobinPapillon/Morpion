@@ -71,7 +71,7 @@ public class VueAcceuil extends Observable{
         });
         
         boutonTournoi = new JButton("Tournoi");
-        boutonUnContreUn.addActionListener(new ActionListener() {
+        boutonTournoi.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 setChanged();                                   
@@ -79,6 +79,13 @@ public class VueAcceuil extends Observable{
                 clearChanged();}
         });
         boutonRegle = new JButton("Règle");
+        boutonRegle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                setChanged();                                   
+                notifyObservers("Regle");
+                clearChanged();}
+        });
         for (int i = 0; i <= 5; i++) {
             panelCentre.add(new JLabel());
         }

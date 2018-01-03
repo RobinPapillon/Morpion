@@ -31,6 +31,7 @@ import morpion.Bouton;
 public class VueParamPlateau extends Observable{
     private JPanel mainPanel ;
     private HashMap<Integer, JRadioButton> ensembleDesBoutonsRadios ;
+    private int tailleSelectione =3;
     
     public VueParamPlateau(){
         
@@ -61,7 +62,8 @@ public class VueParamPlateau extends Observable{
             if (i == 4) {
                 panelCentre.add(new JLabel("Taille du plateau :", JLabel.CENTER));
             }else if (i == 7) {
-                boutonRadio = new  JRadioButton("3 X 3");                
+                boutonRadio = new  JRadioButton("3 X 3"); 
+                boutonRadio.isSelected();
                 panelCentre.add(boutonRadio);
                 groupeEspeces.add(boutonRadio);
                 ensembleDesBoutonsRadios.put(ensembleDesBoutonsRadios.size(), boutonRadio);
@@ -92,9 +94,8 @@ public class VueParamPlateau extends Observable{
         boutonRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                setChanged();
-                String message = "Accueil";                   
-                notifyObservers(message);
+                setChanged();                                  
+                notifyObservers("Acceuil");
                 clearChanged();}
         });
         
@@ -106,9 +107,8 @@ public class VueParamPlateau extends Observable{
         boutonValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                setChanged();
-                String message = "Pseudo";                   
-                notifyObservers(message);
+                setChanged();                
+                notifyObservers(tailleSelectione);
                 clearChanged();}
         });
         

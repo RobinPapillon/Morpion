@@ -14,11 +14,14 @@ public class Plateau {
     private ModeDeJeu modeJeu;
            
     
+    public Plateau(){
+        this.nbCasesCochees = 0;
+        
+    }
     
-    public Plateau(int n){
+    public void setPlateau(int n){
         setCote(n);
         setNbCase(n^2);
-        this.nbCasesCochees = 0;
         this.matriceRond = new int[n][n];
         this.matriceCroix = new int [n][n];
         

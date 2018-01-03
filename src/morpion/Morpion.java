@@ -22,7 +22,8 @@ public class Morpion {
     public Morpion(Joueur j1, Joueur j2, int n){
         setJ1(j1);
         setJ2(j2);
-        this.plateau = new Plateau(n);
+        this.plateau = new Plateau();
+        this.plateau.setPlateau(n);
     }
     
     public void cocherCase(Bouton b){

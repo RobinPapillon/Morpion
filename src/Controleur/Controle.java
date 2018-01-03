@@ -143,13 +143,18 @@ public class Controle implements Observer{
     public void update(Observable observable, Object obj) {
         if (observable instanceof VueAcceuil){
             if(obj instanceof ModeDeJeu){
+                plateau = new Plateau();
                 plateau.setModeJeu((ModeDeJeu) obj);                
                 switchPanelActif(new VueParamPlateau().getMainPanel());
             }
             // bouton regle
         }
         
-        
+        if (observable instanceof  VueParamPlateau){
+            if (obj instanceof JPanel){
+                 plateau.setPlateau(0);
+            }
+        }
                 
         if (obj instanceof Bouton) {
             Bouton bouton = (Bouton) obj;
