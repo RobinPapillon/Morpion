@@ -21,7 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import morpion.Joueur;
+import Morpion.Joueur;
 
 /**
  *

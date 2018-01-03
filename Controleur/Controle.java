@@ -5,6 +5,10 @@
  */
 package Controleur;
 
+import Morpion.Plateau;
+import Morpion.Joueur;
+import Morpion.ModeDeJeu;
+import Morpion.Symbole;
 import Vues.VueMorpion;
 import Vues.VueAcceuil;
 import Vues.VueParamPlateau;
@@ -16,8 +20,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import morpion.Bouton;
-import morpion.*;
+import Morpion.Bouton;
 
 /**
  *
@@ -76,17 +79,15 @@ public class Controle implements Observer{
     {
         
         Symbole s = getCurrentJ().getSymbole();
-        if (s == Symbole.CROIX && plateau.verifCroix(x,y) || s== Symbole.ROND && plateau.verifRond(x,y) ){
+        if (s == Symbole.CROIX && plateau.verifCroix(x,y) || s == Symbole.ROND && plateau.verifRond(x,y) ){
             return "Partie Gagne";
-        }else if(plateau.getNbCasesCochees()== plateau.getNbCase()){
+        }else if(plateau.getNbCasesCochees() == plateau.getNbCase()){
             return "Match nul";
         }else{
             return "Continue";
         }
     }
-        
-   
-
+      
 
     /**
      * @return the currentJ
@@ -150,13 +151,13 @@ public class Controle implements Observer{
             // bouton regle
         }
         
-        if (observable instanceof  VueParamPlateau){
+        else if (observable instanceof VueParamPlateau){
             if (obj instanceof JPanel){
                  plateau.setPlateau(0);
             }
         }
                 
-        if (obj instanceof Bouton) {
+        else if (obj instanceof Bouton) {
             Bouton bouton = (Bouton) obj;
             cocherCase(bouton);
             if (resultat(bouton.getX()-1, bouton.getY()-1)== "Partie Gagne"){
@@ -175,12 +176,7 @@ public class Controle implements Observer{
         vue.remove(panelActif);
         panelActif = panel;
         vue.add(panelActif);
-    }
-
-    
-    
- 
-    
+    }    
 }
 
 

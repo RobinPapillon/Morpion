@@ -1,7 +1,8 @@
+package Application;
 
-import Controleur.Controle;
-import Vues.VueAcceuil;
-import Vues.VueMorpion;
+
+import Controleur.*;
+import Vues.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;

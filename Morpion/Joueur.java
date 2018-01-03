@@ -1,4 +1,4 @@
-package morpion;
+package Morpion;
 
 public class Joueur {
     private String pseudo;

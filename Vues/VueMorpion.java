@@ -25,7 +25,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.MouseInputListener;
-import morpion.Bouton;
+import Morpion.Bouton;
 
 public class VueMorpion extends Observable{
     private final JPanel mainPanel ;
