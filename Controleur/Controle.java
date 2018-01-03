@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;;
 
 /**
@@ -134,6 +135,17 @@ public class Controle implements Observer{
     public Plateau getPlateau() {
         return this.plateau;
     }
+    
+    public ArrayList<Plateau> creerTournoi(ArrayList<String> noms, int taillePlateau){
+        ArrayList<Plateau> listeTournoi = new ArrayList<Plateau>();
+        for (int i = 0; i < noms.size()-1; i++) {
+            for (int j = i+1; j < noms.size(); j++) {
+                Plateau p = new Plateau(noms.get(i),noms.get(j),taillePlateau);
+                listeTournoi.add(p);
+            }
+        }
+        return listeTournoi;
+    }
 
 
     
@@ -170,15 +182,16 @@ public class Controle implements Observer{
                  break;
                  
              case RETOUR_ACCEUIL:
-                 if (vueCourante == "vueDuel") {
-                     vueDuel.close();
-                 }else if (vueCourante == "vueTournoi") {
-                     vueTournoi.close();
-                 }else if (vueCourante == "vueRegle") {
-                     vueRegle.close();
-                 }else if (vueCourante == "vueFinDuel") {
-                     vueFinDuel.close();
-                 }
+                
+                     if (vueCourante == "vueDuel") {                     
+                         vueDuel.close();
+                     }else if (vueCourante == "vueTournoi") {
+                         vueTournoi.close();
+                     }else if (vueCourante == "vueRegle") {
+                         vueRegle.close();
+                     }else if (vueCourante == "vueFinDuel") {
+                         vueFinDuel.close();
+                     }
                  vueAcceuil.afficher();
                  break;
                  
@@ -201,6 +214,7 @@ public class Controle implements Observer{
                 } else if(vueCourante == "vueTournoi"){
                     MessageNoms mn = (MessageNoms)obj;
                     noms = mn.getNoms();
+                    creerTournoi(noms, vueParam.getTailleSelect());
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueTournoi.close();

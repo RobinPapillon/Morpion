@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 
 public class VueRegle extends Observable{
     private final JPanel mainPanel ;
-    private JButton boutonValider;
+    private JButton boutonRetour;
     private final JFrame window;
     
     public VueRegle(){
@@ -62,13 +62,14 @@ public class VueRegle extends Observable{
         JPanel panelBas = new JPanel(new GridLayout(1,3)) ;
         mainPanel.add(panelBas, BorderLayout.SOUTH);
         
-        panelBas.add(new JLabel());
         
         
-        boutonValider = new JButton("Retour");
+        
+        boutonRetour = new JButton("Retour");
+        panelBas.add(boutonRetour);
         panelBas.add(new JLabel());
-        panelBas.add(boutonValider);
-        boutonValider.addActionListener(new ActionListener() {
+        panelBas.add(new JLabel());
+        boutonRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 setChanged();                   

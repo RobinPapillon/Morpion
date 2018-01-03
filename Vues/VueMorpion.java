@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.MouseInputListener;
 import Morpion.*;
+import javax.swing.JOptionPane;
 
 public class VueMorpion extends Observable{
     private final JPanel mainPanel ;
@@ -142,9 +143,15 @@ public class VueMorpion extends Observable{
         btnRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                JOptionPane jop = new JOptionPane();
+                int option = jop.showConfirmDialog(null, "Etes-vous sûre de retourner au menu ?", "Retour au menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (option == JOptionPane.OK_OPTION) {
+                    
+                
                 setChanged();                  
                 notifyObservers(new Message(MessageType.RETOUR_ACCEUIL));
                 clearChanged();}
+            }
         });
         
         panelBas.add(btnRetour);

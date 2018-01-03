@@ -16,6 +16,13 @@ public class Plateau {
     private Joueur j2;
            
     
+    public Plateau(String nom1, String nom2, int n){
+        j1 = new Joueur(nom1, Symbole.CROIX);
+        j2 = new Joueur(nom2, Symbole.ROND);
+        setPlateau(n);
+        nbCasesCochees = 0;
+    }
+    
     public Plateau(Message m){
         this.nbCasesCochees = 0;
         setModeJeu(m);       

@@ -100,7 +100,7 @@ public class VueDuel extends Observable{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 setChanged();
-                notifyObservers(MessageType.RETOUR_ACCEUIL);
+                notifyObservers(new Message(MessageType.RETOUR_ACCEUIL));
                 clearChanged();}
         });
         
