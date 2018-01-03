@@ -35,7 +35,7 @@ public class Controle implements Observer{
     private VueFinDuel vueFinDuel;
     private VueParamPlateau vueParam;
     private VueMorpion vueMorpion;
-//    private VueClassement vueClassement;
+    private VueClassement vueClassement;
     
     private ArrayList<String> noms;
     
@@ -334,10 +334,10 @@ public class Controle implements Observer{
                                 }
                             }
                         } else{
-//                            vueClassement = new VueClassement();
-//                            vueClassement.addObserver(this);
-//                            vueMorpion.close();
-//                            vueClassement.afficher();
+                            vueClassement = new VueClassement(joueurs);
+                            vueClassement.addObserver(this);
+                            vueMorpion.close();
+                            vueClassement.afficher();
                         }
                     }
                 }
