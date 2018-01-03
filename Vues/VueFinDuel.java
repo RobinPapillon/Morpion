@@ -109,18 +109,7 @@ public class VueFinDuel extends Observable{
         mainPanel.add(panelBas, BorderLayout.SOUTH);
 
     }
-    
-//        public static void main(String [] args) {
-//        VueFinDuel exemple1 = new VueFinDuel("Thomas","Damien");
-//        JFrame window = new JFrame();
-//        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-//        window.setSize(700, 500);
-//        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-//        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
-//        window.setTitle("MORPION");
-//        window.add(exemple1.getMainPanel());
-//        window.setVisible(true);
-//   }
+           
 
     /**
      * @return the mainPanel
