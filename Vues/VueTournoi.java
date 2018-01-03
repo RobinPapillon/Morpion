@@ -161,17 +161,7 @@ public class VueTournoi extends Observable{
             
         }
     }
-        public static void main(String [] args) {
-        VueTournoi exemple1 = new VueTournoi();
-        JFrame window = new JFrame();
-        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        window.setSize(700, 500);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
-        window.setTitle("MORPION");
-        window.add(exemple1.getMainPanel());
-        window.setVisible(true);
-   }
+    
 
     /**
      * @return the mainPanel

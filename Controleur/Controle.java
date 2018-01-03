@@ -209,7 +209,6 @@ public class Controle implements Observer{
                 
             case VALIDER_TAILLE:
                 int tailleSelect = vueParam.getTailleSelect();
-                System.out.println(tailleSelect);
                 if (vueCourante2 == "vueDuel") {
                     vueMorpion = new VueMorpion(noms.get(0),noms.get(1),tailleSelect);
                     vueMorpion.addObserver(this);
