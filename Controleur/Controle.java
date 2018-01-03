@@ -57,7 +57,9 @@ public class Controle implements Observer{
         int x = b.getX();
         int y = b.getY();
         
+        plateau = new Plateau(j1.getPseudo(), j2.getPseudo());
         plateau.addCaseCoche();
+        
         if (s == Symbole.CROIX){
             plateau.ajoutMatriceCroix(x, y);
         }else{
@@ -214,6 +216,10 @@ public class Controle implements Observer{
                  if (vueCourante == "vueDuel") {
                     MessageNoms mn = (MessageNoms)obj;
                     noms = mn.getNoms();
+                    Joueur joueur1 = new Joueur(noms.get(0));
+                    Joueur joueur2 = new Joueur(noms.get(1));
+                    setJ1(joueur1);
+                    setJ2(joueur2);
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueDuel.close();

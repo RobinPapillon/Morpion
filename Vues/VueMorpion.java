@@ -182,18 +182,10 @@ public class VueMorpion extends Observable{
         panelBas.add(new JLabel("Bon match")) ;
         panelBas.add(new JLabel());
         
-        
     }
     
     public void setCurrentJoueur(Symbole s){
         this.s = s;
-    }
-
-    /**
-     * @return the mainPanel
-     */
-    public JPanel getMainPanel() {
-        return mainPanel;
     }
     
     public void afficher(){
