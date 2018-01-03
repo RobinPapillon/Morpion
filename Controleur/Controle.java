@@ -260,6 +260,7 @@ public class Controle implements Observer{
                  cocherCase(b);
                  if (resultat(b.getX()-1, b.getY()-1)== "Continue") {
                      joueurSuivant();
+                     vueMorpion.setCurrentJoueur(currentJ.getSymbole());
                  }
                  else if (resultat(b.getX()-1, b.getY()-1)== "Partie Gagné") {
                      if (true) {
