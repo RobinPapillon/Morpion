@@ -68,6 +68,7 @@ public class Controle implements Observer{
     public void joueurSuivant(){
         if (getCurrentJ() == getJ1()) {
             setCurrentJ(getJ2());
+            vueMorpion.setCurrentJoueur(getCurrentJ().getSymbole());
         } else{
             setCurrentJ(getJ1());
         }
@@ -98,7 +99,7 @@ public class Controle implements Observer{
      * @param currentJ the currentJ to set
      */
     public void setCurrentJ(Joueur currentJ) {
-        
+        this.currentJ = currentJ;
     }
 
     /**
@@ -113,6 +114,8 @@ public class Controle implements Observer{
      */
     public void setJ1(Joueur j1) {
         this.j1 = j1;
+        this.j1.setSymbole(Symbole.CROIX);
+        
     }
 
     /**
@@ -136,7 +139,7 @@ public class Controle implements Observer{
         return this.plateau;
     }
     
-    public ArrayList<Plateau> creerTournoi(ArrayList<String> noms, int taillePlateau){
+    public ArrayList<Plateau> creerTournoi (ArrayList<String> noms, int taillePlateau){
         ArrayList<Plateau> listeTournoi = new ArrayList<Plateau>();
         for (int i = 0; i < noms.size()-1; i++) {
             for (int j = i+1; j < noms.size(); j++) {

@@ -32,6 +32,7 @@ public class VueMorpion extends Observable{
     private final JPanel mainPanel ;
     private ArrayList<Bouton> buttons = new ArrayList<>(); 
     private final JFrame window;
+    private Symbole s;
     
     
     public VueMorpion(String pseudo1, String pseudo2, int n){
@@ -162,6 +163,9 @@ public class VueMorpion extends Observable{
         
     }
     
+    public void setCurrentJoueur(Symbole s){
+        this.s = s;
+    }
 
     /**
      * @return the mainPanel
