@@ -172,6 +172,8 @@ public class Controle implements Observer{
                      vueTournoi.close();
                  }else if (vueCourante == "vueRegle") {
                      vueRegle.close();
+                 }else if (vueCourante == "vueFinDuel") {
+                     vueFinDuel.close();
                  }
                  vueAcceuil.afficher();
                  break;
