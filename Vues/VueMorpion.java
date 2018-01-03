@@ -58,7 +58,7 @@ public class VueMorpion extends Observable{
         //panelOuest.setSize(145, 345);
         panelOuest.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         panelOuest.add(new JLabel("       Joueur 1       ", JLabel.CENTER));
-        panelOuest.add(new JLabel(pseudo1, JLabel.CENTER));
+        panelOuest.add(new JLabel("\n" + pseudo1, JLabel.CENTER));
         panelOuest.add(new JLabel("\n CROIX", JLabel.CENTER));
         
         // =================================================================================
@@ -68,7 +68,7 @@ public class VueMorpion extends Observable{
         //panelEst.setSize(145, 345);
         panelEst.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         panelEst.add(new JLabel("       Joueur 2       ", JLabel.CENTER));
-        panelOuest.add(new JLabel(pseudo2, JLabel.CENTER));
+        panelEst.add(new JLabel("\n" + pseudo2, JLabel.CENTER));
         panelEst.add(new JLabel("\n ROND", JLabel.CENTER));
         
         // =================================================================================
