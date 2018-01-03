@@ -97,7 +97,7 @@ public class VueMorpion extends Observable{
                     bTemp.setFont(f);
                     bTemp.setBackground(Color.white);
                     b.setBool(true);
-                    notifyObservers(b);
+                    notifyObservers(new MessageBouton(MessageType.BOUTON, b));
                     clearChanged();
                 }
 

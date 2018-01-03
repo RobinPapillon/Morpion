@@ -248,6 +248,10 @@ public class Controle implements Observer{
                      vueTournoi.afficher();
                  }
                  break;
+            
+             case BOUTON:
+//                 Bouton b = (MessageBouton) obj;
+//                 cocherCase(m)
          }
     }
   
