@@ -37,6 +37,9 @@ public class Controle implements Observer{
     
     private Message lastMessage;
     
+    private String vueCourante;
+    private String vueCourante2; //vue courante n-1
+    
     
     public Controle(){
         vueAcceuil = new VueAcceuil();
@@ -148,11 +151,63 @@ public class Controle implements Observer{
                  vueDuel.addObserver(this);
                  vueAcceuil.close();
                  vueDuel.afficher();
+                 vueCourante = "vueDuel";
+                 vueCourante2 = "vueDuel";
+                 break;
+                 
+             case RETOUR_ACCEUIL:
+                 if (vueCourante == "vueDuel") {
+                     vueDuel.close();
+                 }else if (vueCourante == "vueTournoi") {
+                     vueTournoi.close();
+                 }else if (vueCourante == "vueRegle") {
+                     vueRegle.close();
+                 }
+                 vueAcceuil.afficher();
+                 break;
+                 
+             case TOURNOI:
+                 vueTournoi = new VueTournoi();
+                 vueTournoi.addObserver(this);
+                 vueAcceuil.close();
+                 vueTournoi.afficher();
+                 vueCourante = "vueTournoi";
+                 vueCourante2 = "vueTournoi";
                  break;
                  
              case VALIDER_JOUEURS:
-                 MessageNoms mn = (MessageNoms)obj; //interprète le message reçu comme un message contenant une liste de noms 
-                 ArrayList<String> noms = mn.getNoms();
+                 if (vueCourante == "vueDuel") {
+                    String joueur1 = "";
+                    String joueur2 = "";
+                    vueParam = new VueParamPlateau();
+                    vueParam.addObserver(this);
+                    vueDuel.close();
+                    vueParam.afficher();
+                 } else if(vueCourante == "vueTournoi"){
+                     if (vueTournoi.getListeDeroulante() == 3) {
+                         for (int i = 1; i <= 3; i++) {
+                             
+                         }
+                     }
+                 }
+                 
+                 break;
+                 
+             case REGLE:
+                 vueRegle = new VueRegle();
+                 vueRegle.addObserver(this);
+                 vueAcceuil.close();
+                 vueRegle.afficher();
+                 vueCourante = "vueRegle";
+                 break;
+                 
+             case RETOUR:
+                 vueParam.close();
+                 if (vueCourante2 == "vueDuel") {
+                     vueDuel.afficher();
+                 } else if (vueCourante2 == "vueTournoi") {
+                     vueTournoi.afficher();
+                 }
          }
     }
   

@@ -15,7 +15,7 @@ public enum MessageType {
     DUEL,
     REGLE,
     VALIDER_JOUEURS,
-    VALIDER,
+    VALIDER_PARAM,
     VALIDER_TAILLE,
     EXIT,
     RETOUR,

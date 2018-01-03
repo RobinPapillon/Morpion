@@ -5,6 +5,7 @@
  */
 package Vues;
 
+import Morpion.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -25,6 +26,19 @@ import javax.swing.JTextField;
  * @author damien
  */
 public class VueTournoi extends Observable{
+
+    /**
+     * @return the listeDeroulante
+     */
+    public int getListeDeroulante() {
+        if (listeDeroulante.getSelectedIndex() == 0) {
+            return 3;
+        } else if (listeDeroulante.getSelectedIndex() == 1) {
+            return 4;
+        }else{
+            return 5;
+        }
+    }
     private final JPanel mainPanel ;
     private JButton boutonValider;
     private JButton boutonRetour;
@@ -100,9 +114,8 @@ public class VueTournoi extends Observable{
         boutonRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                setChanged();
-                String message = "Taille Plateau";                   
-                notifyObservers(message);
+                setChanged();                  
+                notifyObservers(new Message(MessageType.RETOUR_ACCEUIL));
                 clearChanged();}
         });
         
@@ -114,9 +127,8 @@ public class VueTournoi extends Observable{
         boutonValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                setChanged();
-                String message = "Grille";                   
-                notifyObservers(message);
+                setChanged();                   
+                notifyObservers(new Message(MessageType.VALIDER_JOUEURS));
                 clearChanged();}
         });
         
@@ -133,7 +145,7 @@ public class VueTournoi extends Observable{
     
     private void updateNbr(){
         for (int i = 0; i < 10; i+=2) {
-            if(i < (listeDeroulante.getSelectedIndex() + 3) * 2){
+            if(i < (getListeDeroulante().getSelectedIndex() + 3) * 2){
                 panelJoueurs.getComponent(i).setVisible(true);
                 panelJoueurs.getComponent(i+1).setVisible(true);
             }
