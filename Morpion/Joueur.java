@@ -3,9 +3,15 @@ package Morpion;
 public class Joueur {
     private String pseudo;
     private Symbole symbole;
+    private int points;
     
     public Joueur(String p){
         setPseudo(p);
+    }
+    
+    public Joueur(String p, int pts){
+        pseudo=p;
+        points=pts;
     }
     
     public Joueur(String p, Symbole s){
