@@ -35,7 +35,7 @@ public class Controle implements Observer{
     private VueParamPlateau vueParam;
     private VueMorpion vueMorpion;
     
-    private Message lastMessage;
+    private ArrayList<String> noms;
     
     private String vueCourante;
     private String vueCourante2; //vue courante n-1
@@ -189,34 +189,18 @@ public class Controle implements Observer{
                  
             case VALIDER_JOUEURS:
                  if (vueCourante == "vueDuel") {
-                    MessageNoms mn = (MessageNoms)obj; //interprète le message reçu comme un message contenant une liste de noms 
-                
-                    ArrayList<String> noms = mn.getNoms();
-                    j1 = new Joueur(noms.get(0),Symbole.CROIX);
-                    j2 = new Joueur(noms.get(1),Symbole.ROND);
+                    MessageNoms mn = (MessageNoms)obj;
+                    noms = mn.getNoms();
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueDuel.close();
                 } else if(vueCourante == "vueTournoi"){
+                    MessageNoms mn = (MessageNoms)obj;
+                    noms = mn.getNoms();
                     vueParam = new VueParamPlateau();
                     vueParam.addObserver(this);
                     vueTournoi.close();
-                    if (vueTournoi.getNumListeDeroulante() == 3) {
-                        String joueur1 = "";
-                        String joueur2 = "";
-                        String joueur3 = "";
-                    }else if (vueTournoi.getNumListeDeroulante() == 4) {
-                        String joueur1 = "";
-                        String joueur2 = "";
-                        String joueur3 = "";
-                        String joueur4 = "";
-                    }else{
-                        String joueur1 = "";
-                        String joueur2 = "";
-                        String joueur3 = "";
-                        String joueur4 = "";
-                        String joueur5 = "";
-                    }
+                    
                 }
                 vueParam.afficher();
                 break;
@@ -225,7 +209,7 @@ public class Controle implements Observer{
                 int tailleSelect = vueParam.getTailleSelect();
                 System.out.println(tailleSelect);
                 if (vueCourante2 == "vueDuel") {
-                    vueMorpion = new VueMorpion(j1.toString(),j2.toString(),tailleSelect);
+                    vueMorpion = new VueMorpion(noms.get(0),noms.get(1),tailleSelect);
                     vueMorpion.addObserver(this);
                     vueParam.close();
                     vueMorpion.afficher();

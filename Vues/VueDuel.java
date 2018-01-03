@@ -100,10 +100,7 @@ public class VueDuel extends Observable{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 setChanged();
-                ArrayList<String> listeNoms = new ArrayList<>();
-                listeNoms.add(((JTextField)panelJoueurs.getComponent(3)).getText());
-                listeNoms.add(((JTextField)panelJoueurs.getComponent(5)).getText());
-                notifyObservers(new MessageNoms (MessageType.RETOUR_ACCEUIL, listeNoms));
+                notifyObservers(MessageType.RETOUR_ACCEUIL);
                 clearChanged();}
         });
         
@@ -115,8 +112,11 @@ public class VueDuel extends Observable{
         boutonValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                setChanged();                  
-                notifyObservers(new Message (MessageType.VALIDER_JOUEURS));
+                setChanged();
+                ArrayList<String> listeNoms = new ArrayList<>();
+                listeNoms.add(((JTextField)panelJoueurs.getComponent(3)).getText());
+                listeNoms.add(((JTextField)panelJoueurs.getComponent(5)).getText());
+                notifyObservers(new MessageNoms(MessageType.VALIDER_JOUEURS, listeNoms));
                 clearChanged();}
         });
         
