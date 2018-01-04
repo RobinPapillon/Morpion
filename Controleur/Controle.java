@@ -185,7 +185,8 @@ public class Controle implements Observer{
              case FIN_DUEL:
                  Joueur gagnant = currentJ;
                  if (vueCourante2 == "vueDuel") {
-                     vueFinDuel = new VueFinDuel(gagnant);
+                     vueFinDuel = new VueFinDuel();
+                     vueFinDuel.setGagnant(gagnant);
                      vueFinDuel.addObserver(this);
                      vueMorpion.close();
                      vueFinDuel.afficher();
@@ -304,12 +305,14 @@ public class Controle implements Observer{
                 MessageBouton mb = (MessageBouton) obj;
                 Bouton b = mb.getB();
                 cocherCase(b);
-                if (resultat(b.getX()-1, b.getY()-1)== "Continue") {
+                String verdict = resultat(b.getX()-1, b.getY()-1);
+                if (verdict== "Continue") {
                     joueurSuivant();                    
                 }
-                else if (resultat(b.getX()-1, b.getY()-1)== "Partie Gagne") {
+                else if (verdict== "Partie Gagne") {
                     if (vueCourante2 == "vueDuel") {
-                        vueFinDuel = new VueFinDuel(currentJ);
+                        vueFinDuel = new VueFinDuel();
+                        vueFinDuel.setGagnant(currentJ);
                         vueFinDuel.addObserver(this);
                         vueMorpion.close();
                         vueFinDuel.afficher();
@@ -340,7 +343,19 @@ public class Controle implements Observer{
                             vueClassement.afficher();
                         }
                     }
+                }else if (verdict== "Match nul") {
+                    if (vueCourante2 == "vueDuel") {
+                        vueFinDuel = new VueFinDuel();
+                        vueFinDuel.setGagnant(null);
+                        vueFinDuel.addObserver(this);
+                        vueMorpion.close();
+                        vueFinDuel.afficher();
+                    }else if(vueCourante2 == "vueTournoi"){
+                        
+                    }
+                    
                 }
+                
                 break;
                  
             case REJOUER:

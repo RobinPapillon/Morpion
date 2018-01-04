@@ -29,15 +29,16 @@ import Morpion.*;
  */
 public class VueFinDuel extends Observable{
     private final JPanel mainPanel ;
-    private JButton boutonRejouer;
-    private JButton boutonRetour;
-    private JLabel bienvenue;
-    private String pseudoGagnant;
+    private JButton boutonRejouer ;
+    private JButton boutonRetour ;
+    private JLabel bienvenue ;
+    private String pseudoGagnant ;
     private final JFrame window ;
+    private Joueur gagnant ;
+    private JPanel panelHaut;
     
     
-    public VueFinDuel(Joueur gagnant){
-        pseudoGagnant = gagnant.getPseudo();
+    public VueFinDuel(){        
         Font f = new Font("arial", 0, 50); 
         window = new JFrame();
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -51,11 +52,9 @@ public class VueFinDuel extends Observable{
         
         // =================================================================================
         // NORD
-        JPanel panelHaut = new JPanel() ;
+        panelHaut = new JPanel() ;
         mainPanel.add(panelHaut, BorderLayout.NORTH);
-        bienvenue = new JLabel("FIN DE LA PARTIE");
-        panelHaut.add(bienvenue);
-        bienvenue.setFont(f);
+        
         
         // =================================================================================
         // OUEST 
@@ -124,5 +123,22 @@ public class VueFinDuel extends Observable{
     
     public void close() {
         window.dispose();
+    }
+
+    /**
+     * @param gagnant the gagnant to set
+     */
+    public void setGagnant(Joueur gagnant) {
+        this.gagnant = gagnant;
+        pseudoGagnant = gagnant.getPseudo();
+        if (gagnant != null){
+            bienvenue = new JLabel(pseudoGagnant+" est Vainqueur");
+        }else   {
+            bienvenue = new JLabel("Match Nul");
+        }        
+        panelHaut.add(bienvenue);
+        Font f = new Font("arial", 0, 40);
+        bienvenue.setFont(f);
+        
     }
 }
