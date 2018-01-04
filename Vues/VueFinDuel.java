@@ -132,7 +132,7 @@ public class VueFinDuel extends Observable{
         this.gagnant = gagnant;
         pseudoGagnant = gagnant.getPseudo();
         if (gagnant != null){
-            bienvenue = new JLabel(pseudoGagnant+" est Vainqueur");
+            bienvenue = new JLabel(pseudoGagnant + " est Vainqueur");
         }else   {
             bienvenue = new JLabel("Match Nul");
         }        
