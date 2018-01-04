@@ -264,6 +264,7 @@ public class Controle implements Observer{
                     joueurs = new ArrayList<Joueur>();
                     for (int i = 0; i < noms.size(); i++) {
                         Joueur j = new Joueur(noms.get(i));
+                        j.setPoints(0);
                         joueurs.add(j);
                     }
                     vueParam = new VueParamPlateau();
@@ -350,10 +351,10 @@ public class Controle implements Observer{
                         
                     } else if (modeDeJeu == "vueTournoi") {
                         tailleSelect = vueParam.getTailleSelect();
+                        currentJ.addPoints(2);
                         
                         if (nbPartie < listeMatchs.size()) {
-                            nbPartie++;
-                            currentJ.addPoints(2);                            
+                            nbPartie++;                  
                             vueMorpion.close();
                             
                             plateau = listeMatchs.get(nbPartie-1);
@@ -392,10 +393,11 @@ public class Controle implements Observer{
                         
                     }else if(modeDeJeu == "vueTournoi"){
                         tailleSelect = vueParam.getTailleSelect();
+                        j1.addPoints(1);
+                        j2.addPoints(1);
+                        
                         if (nbPartie < listeMatchs.size()) {
-                            nbPartie++;
-                            j1.addPoints(1);
-                            j2.addPoints(1);                           
+                            nbPartie++;                           
                             vueMorpion.close();
                             plateau = listeMatchs.get(nbPartie-1);
                             vueMorpion = new VueMorpion(plateau.getJ1().getPseudo(), 

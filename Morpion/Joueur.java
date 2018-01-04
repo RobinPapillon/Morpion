@@ -10,8 +10,8 @@ public class Joueur {
     }
     
     public Joueur(String p, int pts){
-        pseudo=p;
-        points=pts;
+        setPseudo(p);
+        setPoints(pts);
     }
     
     public Joueur(String p, Symbole s){
@@ -55,6 +55,13 @@ public class Joueur {
     }
     
     public void addPoints(int x){
-        this.points += x ;
+        this.setPoints(this.points + x) ;
+    }
+
+    /**
+     * @param points the points to set
+     */
+    public void setPoints(int points) {
+        this.points = points;
     }
 }
