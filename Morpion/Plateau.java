@@ -10,7 +10,7 @@ public class Plateau {
     private int nbCasesCochees;
     private int[][] matriceRond;
     private int[][] matriceCroix;
-    private Message modeJeu;
+    private Message modeJeu;// tournoi ou duel
     private Joueur j1;
     private Joueur j2;
            
@@ -28,7 +28,7 @@ public class Plateau {
         setModeJeu(m);       
     }
     
-    public void setPlateau(int n){
+    public void setPlateau(int n){//initialise tout les attribut qui dépende de la taille du plateau
         setCote(n);
         setNbCase(n);
         this.matriceRond = new int[n][n];
@@ -36,7 +36,6 @@ public class Plateau {
         
         for (int i=0; i<n; i++) {
             for (int j = 0; j < n; j++) {
-                //cases.add(new Case(i+1, j+1, null));
                 matriceCroix[i][j] = 0;
                 matriceRond[i][j] = 0;
 
@@ -46,12 +45,12 @@ public class Plateau {
         
     }
     
-    public void addCaseCoche(){
+    public void addCaseCoche(){// sert pour le comptage de points lors d'un tournoi
         nbCasesCochees += 1;
     }
     
-    public boolean verifCroix(int x, int y){
-        
+    public boolean verifCroix(int x, int y){// a chaque case croix coché, cette méthode verifie si une ligne colonne ou diagonales à été rempli
+        // on a créé 2 matrice qui se superpose à la grille et qui pour chaque case vaut 1 si il y a le symbole associé, 0 sinon (autre symbole ou vide)
         int total = 0;
         // verification ligne       
         for (int j = 0; j < getCote(); j++){
@@ -81,7 +80,7 @@ public class Plateau {
         return(total == getCote());           
     }
     
-    public boolean verifRond(int x, int y){
+    public boolean verifRond(int x, int y){// pareil que verif croix mais pour le rond
         
         int total = 0;
         // verification ligne       
@@ -167,7 +166,7 @@ public class Plateau {
     /**
      * @param matriceRond the matriceRond to set
      */
-    public void ajoutMatriceRond(int x,int y) {
+    public void ajoutMatriceRond(int x,int y) {//ajoute une case coché rond dans la matrice
         this.matriceRond[x][y] = 1;
     }
 
@@ -181,7 +180,7 @@ public class Plateau {
     /**
      * @param matriceCroix the matriceCroix to set
      */
-    public void ajoutMatriceCroix(int x,int y) {
+    public void ajoutMatriceCroix(int x,int y) {// ajoute une case coché croix dans la matrice
         this.matriceCroix[x][y] = 1;
     }
 
