@@ -351,7 +351,7 @@ public class Controle implements Observer{
                     } else if (modeDeJeu == "vueTournoi") {
                         tailleSelect = vueParam.getTailleSelect();
                         
-                        if (nbPartie < ((tailleSelect * (tailleSelect - 1))/2)) {
+                        if (nbPartie < listeMatchs.size()) {
                             nbPartie++;
                             currentJ.addPoints(2);                            
                             vueMorpion.close();
@@ -392,7 +392,7 @@ public class Controle implements Observer{
                         
                     }else if(modeDeJeu == "vueTournoi"){
                         tailleSelect = vueParam.getTailleSelect();
-                        if (nbPartie < ((tailleSelect * (tailleSelect - 1))/2)) {
+                        if (nbPartie < listeMatchs.size()) {
                             nbPartie++;
                             j1.addPoints(1);
                             j2.addPoints(1);                           
