@@ -40,7 +40,7 @@ public class Controle implements Observer{
     private ArrayList<String> noms;
     
     private String vueCourante;
-    private String vueCourante2; //vue courante n-1
+    private String modeDeJeu; //vue courante n-1
     
     private ArrayList<Plateau> listeMatchs = new ArrayList<Plateau>();
     private ArrayList<Joueur> joueurs;
@@ -154,7 +154,6 @@ public class Controle implements Observer{
         for (int i = 0; i < joueurs.size()-1; i++) {
             for (int j = i+1; j < joueurs.size(); j++) {
                 Plateau p = new Plateau(joueurs.get(i).getPseudo(),joueurs.get(j).getPseudo(), taille);
-                
                 listeTournoi.add(p);
             }
         }
@@ -206,19 +205,19 @@ public class Controle implements Observer{
                  vueAcceuil.close();
                  vueDuel.afficher();
                  vueCourante = "vueDuel";
-                 vueCourante2 = "vueDuel";
+                 modeDeJeu = "vueDuel";
                  break;
                  
              case FIN_DUEL:
                  Joueur gagnant = currentJ;
-                 if (vueCourante2 == "vueDuel") {
+                 if (modeDeJeu == "vueDuel") {
                      vueFinDuel = new VueFinDuel();
                      vueFinDuel.setGagnant(gagnant);
                      vueFinDuel.addObserver(this);
                      vueMorpion.close();
                      vueFinDuel.afficher();
                      vueCourante = "vueFinDuel";
-                 }else if (vueCourante2 == "vueTournoi") {
+                 }else if (modeDeJeu == "vueTournoi") {
                      
                  }
                  
@@ -244,7 +243,7 @@ public class Controle implements Observer{
                  vueAcceuil.close();
                  vueTournoi.afficher();
                  vueCourante = "vueTournoi";
-                 vueCourante2 = "vueTournoi";
+                 modeDeJeu = "vueTournoi";
                  break;
                  
             case VALIDER_JOUEURS:
@@ -277,7 +276,7 @@ public class Controle implements Observer{
                 
             case VALIDER_TAILLE:
                 int tailleSelect = vueParam.getTailleSelect();
-                if (vueCourante2 == "vueDuel") {
+                if (modeDeJeu == "vueDuel") {
                     vueMorpion = new VueMorpion(noms.get(0),noms.get(1),tailleSelect);
                     plateau = new Plateau(j1.getPseudo(), j2.getPseudo(), tailleSelect);
                     vueMorpion.addObserver(this);
@@ -290,7 +289,7 @@ public class Controle implements Observer{
                             currentJ = j2;
                         }
                     } 
-                } else if (vueCourante2 == "vueTournoi") {
+                } else if (modeDeJeu == "vueTournoi") {
                     listeMatchs = creerTournoi(joueurs, tailleSelect);
                     plateau = listeMatchs.get(0);
                     vueMorpion = new VueMorpion(plateau.getJ1().getPseudo(), 
@@ -322,10 +321,10 @@ public class Controle implements Observer{
              case RETOUR:
                  vueParam.close();
                  
-                 if (vueCourante2 == "vueDuel") {
+                 if (modeDeJeu == "vueDuel") {
                      vueDuel.afficher();
                      
-                 } else if (vueCourante2 == "vueTournoi") {
+                 } else if (modeDeJeu == "vueTournoi") {
                      vueTournoi.afficher();
                  }
                  
@@ -342,17 +341,17 @@ public class Controle implements Observer{
                 }
                 
                 else if (verdict == "Partie Gagne") {
-                    if (vueCourante2 == "vueDuel") {
+                    if (modeDeJeu == "vueDuel") {
                         vueFinDuel = new VueFinDuel();
                         vueFinDuel.setGagnant(currentJ);
                         vueFinDuel.addObserver(this);
                         vueMorpion.close();
                         vueFinDuel.afficher();
                         
-                    } else if (vueCourante2 == "vueTournoi") {
+                    } else if (modeDeJeu == "vueTournoi") {
                         tailleSelect = vueParam.getTailleSelect();
                         
-                        if (nbPartie < (tailleSelect * (tailleSelect - 1))/2) {
+                        if (nbPartie < ((tailleSelect * (tailleSelect - 1))/2)) {
                             nbPartie++;
                             currentJ.addPoints(2);                            
                             vueMorpion.close();
@@ -384,16 +383,16 @@ public class Controle implements Observer{
                     }
                     
                 }else if (verdict == "Match nul") {
-                    if (vueCourante2 == "vueDuel") {
+                    if (modeDeJeu == "vueDuel") {
                         vueFinDuel = new VueFinDuel();
                         vueFinDuel.setGagnant(null);
                         vueFinDuel.addObserver(this);
                         vueMorpion.close();
                         vueFinDuel.afficher();
                         
-                    }else if(vueCourante2 == "vueTournoi"){
+                    }else if(modeDeJeu == "vueTournoi"){
                         tailleSelect = vueParam.getTailleSelect();
-                        if (nbPartie < (tailleSelect * (tailleSelect - 1))/2) {
+                        if (nbPartie < ((tailleSelect * (tailleSelect - 1))/2)) {
                             nbPartie++;
                             j1.addPoints(1);
                             j2.addPoints(1);                           
