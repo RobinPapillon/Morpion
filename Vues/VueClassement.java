@@ -73,7 +73,7 @@ public class VueClassement extends Observable{
         mainPanel.add(panelCentre, BorderLayout.CENTER);
         for (int i = 0; i < classement.size(); i++) {
             Joueur j = classement.get(i);
-            JLabel pJ = new JLabel(j.getPseudo()+i+" place : "+j.getPoints()+" points", JLabel.CENTER);
+            JLabel pJ = new JLabel(j.getPseudo()+" "+(i+1)+" place : "+j.getPoints()+" points", JLabel.CENTER);
             panelCentre.add(pJ);
         }
         for (int j = 0; j < 6-classement.size(); j++) {
