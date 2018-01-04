@@ -46,4 +46,15 @@ public class Joueur {
     public void setSymbole(Symbole symbole) {
         this.symbole = symbole;
     }
+
+    /**
+     * @return the points
+     */
+    public int getPoints() {
+        return points;
+    }
+    
+    public void addPoints(int x){
+        this.points += x ;
+    }
 }

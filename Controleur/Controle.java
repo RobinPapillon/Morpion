@@ -320,6 +320,7 @@ public class Controle implements Observer{
                         tailleSelect = vueParam.getTailleSelect();
                         if (nbPartie < (tailleSelect * (tailleSelect - 1))/2) {
                             nbPartie++;
+                            currentJ.addPoints(2);                            
                             vueMorpion.close();
                             plateau = listeMatchs.get(nbPartie-1);
                             vueMorpion = new VueMorpion(plateau.getJ1().getPseudo(), 
@@ -351,7 +352,32 @@ public class Controle implements Observer{
                         vueMorpion.close();
                         vueFinDuel.afficher();
                     }else if(vueCourante2 == "vueTournoi"){
-                        
+                        nbPartie++;
+                            j1.addPoints(1);
+                            j2.addPoints(1);                           
+                            vueMorpion.close();
+                            plateau = listeMatchs.get(nbPartie-1);
+                            tailleSelect = vueParam.getTailleSelect();
+                            vueMorpion = new VueMorpion(plateau.getJ1().getPseudo(), 
+                                                plateau.getJ2().getPseudo(), tailleSelect);
+                            setJ1(plateau.getJ1());
+                            setJ2(plateau.getJ2());
+                            vueMorpion.addObserver(this);
+                            vueParam.close();
+                            vueMorpion.afficher();
+                            if (plateau.getNbCasesCochees() == 0) {
+                                if (vueMorpion.getS() == plateau.getJ1().getSymbole()) {
+                                    currentJ = plateau.getJ1();
+                                } else{
+                                    currentJ = plateau.getJ2();
+                                }
+                            }
+                         else{
+                            vueClassement = new VueClassement(joueurs);
+                            vueClassement.addObserver(this);
+                            vueMorpion.close();
+                            vueClassement.afficher();
+                        }
                     }
                     
                 }
