@@ -162,12 +162,12 @@ public class Controle implements Observer{
     }
 
 
-    public Joueur max(ArrayList<Joueur> tab, int taille){
-        int i =0;
+    public Joueur max(ArrayList<Joueur> tab){
+        int i = 0;
         int max = -1;
-        Joueur j = null ;
-        while (i<taille){
-            if(tab.get(i).getPoints()>max){
+        Joueur j = new Joueur(null) ;
+        while (i < tab.size()){
+            if(tab.get(i).getPoints() > max){
                 max = tab.get(i).getPoints();
                 j = tab.get(i);                
             }
@@ -177,11 +177,11 @@ public class Controle implements Observer{
     }
     
     
-    public ArrayList<Joueur> trier(ArrayList<Joueur> tab){
+    public ArrayList<Joueur> trier (ArrayList<Joueur> tab){
         ArrayList<Joueur> listeTrie = new ArrayList<Joueur>();
-        Joueur j = null;
-        while (tab.isEmpty()== false){
-            j = max(tab,tab.size());
+        Joueur j = new Joueur(null);
+        while (tab.isEmpty() == false){
+            j = max(tab);
             tab.remove(j);
             listeTrie.add(j);
         }
@@ -233,7 +233,10 @@ public class Controle implements Observer{
                          vueRegle.close();
                      }else if (vueCourante == "vueFinDuel") {
                          vueFinDuel.close();
+                     }else if (vueCourante == "vueMorpion") {
+                         vueMorpion.close();
                      }
+                     
                  vueAcceuil.afficher();
                  break;
                  
@@ -290,6 +293,8 @@ public class Controle implements Observer{
                             currentJ = j2;
                         }
                     } 
+                    vueCourante = "vueMorpion";
+                    
                 } else if (modeDeJeu == "vueTournoi") {
                     listeMatchs = creerTournoi(joueurs, tailleSelect);
                     plateau = listeMatchs.get(0);

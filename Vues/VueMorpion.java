@@ -170,8 +170,8 @@ public class VueMorpion extends Observable{
                 JOptionPane jop = new JOptionPane();
                 int option = jop.showConfirmDialog(null, "Etes-vous sûre de retourner au menu ?", 
                         "Retour au menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                
                 if (option == JOptionPane.OK_OPTION) {
-                    
                 setChanged();                  
                 notifyObservers(new Message(MessageType.RETOUR_ACCEUIL));
                 clearChanged();}
