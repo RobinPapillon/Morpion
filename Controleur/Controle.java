@@ -26,8 +26,11 @@ public class Controle implements Observer{
     private Joueur j1;
     private Joueur j2; 
     
-    private Joueur currentJ;
+    private Joueur currentJ; //Joueur courant (celui qui joue ou vient de jouer)
+    
     private Plateau plateau;
+    
+    //ensemble des vues
     private VueAcceuil vueAcceuil;
     private VueDuel vueDuel;
     private VueTournoi vueTournoi;
@@ -39,13 +42,15 @@ public class Controle implements Observer{
     
     private ArrayList<String> noms;
     
-    private String vueCourante;
-    private String modeDeJeu; //vue courante n-1
+    private String vueCourante; //variable de rappelle de la vue courante
+    private String modeDeJeu; //variable de rappel du mode de jeu choisi
     
+    // liste des matchs d'un tournoi
     private ArrayList<Plateau> listeMatchs = new ArrayList<Plateau>();
-    private ArrayList<Joueur> joueurs;
     
-    private int nbPartie;
+    private ArrayList<Joueur> joueurs;//liste des joueurs d'un tournoi
+    
+    private int nbPartie; //comptage du nombre partie pour une tournoi
     
     
     public Controle(){
@@ -57,8 +62,9 @@ public class Controle implements Observer{
         vueAcceuil.afficher();
     }
     
-    
-    public void cocherCase(Bouton b){
+    //Méthode qui enregistre la case dans la classe plateau 
+    //cocher en fonction des coordonnées du bouton.
+    public void cocherCase(Bouton b){ 
         Symbole s = getCurrentJ().getSymbole();
         int x = b.getX()-1;
         int y = b.getY()-1;
@@ -67,12 +73,13 @@ public class Controle implements Observer{
         
         if (s == Symbole.CROIX){
             plateau.ajoutMatriceCroix(x, y);
+            
         }else{
             plateau.ajoutMatriceRond(x, y);
-        }
-        
+        }  
     }
     
+    //Méthode pour change de joueur dès qu'une case est cochée.
     public void joueurSuivant(){
         if (getCurrentJ() == getJ1()) {
             setCurrentJ(getJ2());
@@ -84,6 +91,8 @@ public class Controle implements Observer{
         vueMorpion.setCurrentSymbole(getCurrentJ().getSymbole());
     }
     
+    //Test a chaque fois qu'une case est coché si la partie est fini = victoire ou nul
+    //sinon envoe de continuer
     public String resultat(int x, int y){ // n coté du morpion
         
         Symbole s = getCurrentJ().getSymbole();
@@ -148,6 +157,9 @@ public class Controle implements Observer{
         return this.plateau;
     }
     
+    //Méthode de création des différents plateaus des différents matchs d'un tournoi.
+    //En fonction du nombre de joueur (nb) il y a nb*(nb-1)/2 matchs.
+    //Système de la ronde simple. CF vueRègle
     public ArrayList<Plateau> creerTournoi (ArrayList<Joueur> joueurs,int taille){
         ArrayList<Plateau> listeTournoi = new ArrayList<Plateau>();
         
@@ -161,7 +173,7 @@ public class Controle implements Observer{
         return listeTournoi;
     }
 
-
+    //Fonction qui détermine le score max d'un tableau, utile pour le tri.
     public Joueur max(ArrayList<Joueur> tab){
         int i = 0;
         int max = -1;
@@ -176,7 +188,10 @@ public class Controle implements Observer{
         return j;
     }
     
+    //Méthode de tri des joueurs en fonction de leur score
+    //Du 1er au dernier
     
+    //Cette méthode ne fonctionne pas
     public ArrayList<Joueur> trier (ArrayList<Joueur> tab){
         ArrayList<Joueur> listeTrie = new ArrayList<Joueur>();
         Joueur j = new Joueur(null);
@@ -189,17 +204,17 @@ public class Controle implements Observer{
     }
     
     
-    
+    //Diférents cas de réponse en fonction des boutons cliquer
     @Override
     public void update(Observable observable, Object obj) {
          Message m = (Message) obj;
          
          switch(m.getType()){
-             case EXIT: 
+             case EXIT: //Si bouton quitter on quitte le jeu
                  vueAcceuil.close();
                  break;
                  
-             case DUEL:
+             case DUEL: //Si bouton 1 contre 1
                  vueDuel = new VueDuel();
                  vueDuel.addObserver(this);
                  vueAcceuil.close();
@@ -208,22 +223,7 @@ public class Controle implements Observer{
                  modeDeJeu = "vueDuel";
                  break;
                  
-             case FIN_DUEL:
-                 Joueur gagnant = currentJ;
-                 if (modeDeJeu == "vueDuel") {
-                     vueFinDuel = new VueFinDuel();
-                     vueFinDuel.setGagnant(gagnant);
-                     vueFinDuel.addObserver(this);
-                     vueMorpion.close();
-                     vueFinDuel.afficher();
-                     vueCourante = "vueFinDuel";
-                 }else if (modeDeJeu == "vueTournoi") {
-                     
-                 }
-                 
-                 break;
-                 
-             case RETOUR_ACCEUIL:
+             case RETOUR_ACCEUIL: //Si un bouton retour est cliquer hormis celui dans vueParamètre
                 
                      if (vueCourante == "vueDuel") {                     
                          vueDuel.close();
@@ -240,7 +240,7 @@ public class Controle implements Observer{
                  vueAcceuil.afficher();
                  break;
                  
-            case TOURNOI:
+            case TOURNOI: //Si bouton tournoi cliquer
                  vueTournoi = new VueTournoi();
                  vueTournoi.addObserver(this);
                  vueAcceuil.close();
@@ -249,7 +249,7 @@ public class Controle implements Observer{
                  modeDeJeu = "vueTournoi";
                  break;
                  
-            case VALIDER_JOUEURS:
+            case VALIDER_JOUEURS: //Bouton valider de la vue Selection des pseudos des joueurs
                  if (vueCourante == "vueDuel") {
                     MessageNoms mn = (MessageNoms)obj;
                     noms = mn.getNoms();
@@ -278,7 +278,9 @@ public class Controle implements Observer{
                 vueParam.afficher();
                 break;
                 
-            case VALIDER_TAILLE:
+                //Bouton valider de la vueParamPlateau
+                //création du premier plateau
+            case VALIDER_TAILLE: 
                 int tailleSelect = vueParam.getTailleSelect();
                 if (modeDeJeu == "vueDuel") {
                     vueMorpion = new VueMorpion(noms.get(0),noms.get(1),tailleSelect);
@@ -316,7 +318,7 @@ public class Controle implements Observer{
                 }
                 break;
                  
-             case REGLE:
+             case REGLE: //Si bouton Règle cliquer
                  vueRegle = new VueRegle();
                  vueRegle.addObserver(this);
                  vueAcceuil.close();
@@ -324,7 +326,7 @@ public class Controle implements Observer{
                  vueCourante = "vueRegle";
                  break;
                  
-             case RETOUR:
+             case RETOUR: //Si bouton retour de vueParamPlateau cliquer
                  vueParam.close();
                  
                  if (modeDeJeu == "vueDuel") {
@@ -336,16 +338,19 @@ public class Controle implements Observer{
                  
                  break;
             
-            case BOUTON:
+            case BOUTON: //Cas ou les boutons du morpion sont cliquer
                 MessageBouton mb = (MessageBouton) obj;
                 Bouton b = mb.getB();
                 cocherCase(b);
                 String verdict = resultat(b.getX()-1, b.getY()-1);
                 
-                if (verdict == "Continue") {
+                // Dans tous les cas si pas de vainqueur ou de match nul on continue
+                if (verdict == "Continue") { 
                     joueurSuivant();                    
                 }
                 
+                //Si partie gagner ou match nul on amène à la vueFinDuel si fin duel sinon on regarde si tous les
+                //matchs ont été dans le tournoi si oui vueClassment sinon nouveau match.
                 else if (verdict == "Partie Gagne") {
                     if (modeDeJeu == "vueDuel") {
                         vueFinDuel = new VueFinDuel();
@@ -433,7 +438,7 @@ public class Controle implements Observer{
                 
                 break;
                  
-            case REJOUER:
+            case REJOUER: //Si le bouton rejouer est cliquer après un duel on refait la même partie
                 tailleSelect = vueParam.getTailleSelect();
                 
                 vueMorpion = new VueMorpion(noms.get(0),noms.get(1),tailleSelect);
