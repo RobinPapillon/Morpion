@@ -104,18 +104,20 @@ public class VueMorpion extends Observable{
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     setChanged();
-                    Font f = new Font("arial", 0, 90);
-                    if (VueMorpion.this.getS() == Symbole.ROND) {
-                        bTemp.setText("O");
-                        bTemp.setForeground(Color.blue);
-                    } else {
-                        bTemp.setText("X");
-                        bTemp.setForeground(Color.red);
+                    if (b.getBool() == false) {
+                        Font f = new Font("arial", 0, 90);
+                        if (VueMorpion.this.getS() == Symbole.ROND) {
+                            bTemp.setText("O");
+                            bTemp.setForeground(Color.blue);
+                        } else {
+                            bTemp.setText("X");
+                            bTemp.setForeground(Color.red);
+                        }
+                        bTemp.setFont(f);
+                        bTemp.setBackground(Color.white);
+                        b.setBool(true);
+                        notifyObservers(new MessageBouton(MessageType.BOUTON, b));
                     }
-                    bTemp.setFont(f);
-                    bTemp.setBackground(Color.white);
-                    b.setBool(true);
-                    notifyObservers(new MessageBouton(MessageType.BOUTON, b));
                     clearChanged();
                 }
 
@@ -132,14 +134,14 @@ public class VueMorpion extends Observable{
                     if (b.getBool() == false) {
                         Font f = new Font("arial", 0, 90);
                         if (VueMorpion.this.getS() == Symbole.ROND) {
-                        bTemp.setText("O");
-                        bTemp.setForeground(Color.blue);
-                    } else {
-                        bTemp.setText("X");
-                        bTemp.setForeground(Color.red);
-                    }
-                        bTemp.setFont(f);
-                        bTemp.setBackground(Color.LIGHT_GRAY);
+                            bTemp.setText("O");
+                            bTemp.setForeground(Color.blue);
+                        } else {
+                            bTemp.setText("X");
+                            bTemp.setForeground(Color.red);
+                        }
+                            bTemp.setFont(f);
+                            bTemp.setBackground(Color.LIGHT_GRAY);
                     }
                 }
 
