@@ -306,10 +306,10 @@ public class Controle implements Observer{
                 Bouton b = mb.getB();
                 cocherCase(b);
                 String verdict = resultat(b.getX()-1, b.getY()-1);
-                if (verdict== "Continue") {
+                if (verdict == "Continue") {
                     joueurSuivant();                    
                 }
-                else if (verdict== "Partie Gagne") {
+                else if (verdict == "Partie Gagne") {
                     if (vueCourante2 == "vueDuel") {
                         vueFinDuel = new VueFinDuel();
                         vueFinDuel.setGagnant(currentJ);
@@ -344,7 +344,7 @@ public class Controle implements Observer{
                             vueClassement.afficher();
                         }
                     }
-                }else if (verdict== "Match nul") {
+                }else if (verdict == "Match nul") {
                     if (vueCourante2 == "vueDuel") {
                         vueFinDuel = new VueFinDuel();
                         vueFinDuel.setGagnant(null);
@@ -352,12 +352,13 @@ public class Controle implements Observer{
                         vueMorpion.close();
                         vueFinDuel.afficher();
                     }else if(vueCourante2 == "vueTournoi"){
-                        nbPartie++;
+                        tailleSelect = vueParam.getTailleSelect();
+                        if (nbPartie < (tailleSelect * (tailleSelect - 1))/2) {
+                            nbPartie++;
                             j1.addPoints(1);
                             j2.addPoints(1);                           
                             vueMorpion.close();
                             plateau = listeMatchs.get(nbPartie-1);
-                            tailleSelect = vueParam.getTailleSelect();
                             vueMorpion = new VueMorpion(plateau.getJ1().getPseudo(), 
                                                 plateau.getJ2().getPseudo(), tailleSelect);
                             setJ1(plateau.getJ1());
@@ -372,7 +373,7 @@ public class Controle implements Observer{
                                     currentJ = plateau.getJ2();
                                 }
                             }
-                         else{
+                        } else{
                             vueClassement = new VueClassement(joueurs);
                             vueClassement.addObserver(this);
                             vueMorpion.close();
