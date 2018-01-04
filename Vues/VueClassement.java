@@ -69,18 +69,17 @@ public class VueClassement extends Observable{
         
         // =================================================================================
         // CENTRE
-        JPanel panelCentre = new JPanel(new GridLayout(5,1));
+        JPanel panelCentre = new JPanel(new GridLayout(6,1));
         mainPanel.add(panelCentre, BorderLayout.CENTER);
-        JLabel j1 = new JLabel(classement.get(0).getPseudo());
-        JLabel j2 = new JLabel(classement.get(1).getPseudo());
-        JLabel j3 = new JLabel(classement.get(2).getPseudo());
-        JLabel j4 = new JLabel();
-        JLabel j5 = new JLabel();
-        panelCentre.add(j1);
-        panelCentre.add(j2);
-        panelCentre.add(j3);
-        panelCentre.add(j4);
-        panelCentre.add(j5);
+        for (int i = 0; i < classement.size(); i++) {
+            Joueur j = classement.get(i);
+            JLabel pJ = new JLabel(j.getPseudo()+i+" place : "+j.getPoints()+" points", JLabel.CENTER);
+            panelCentre.add(pJ);
+        }
+        for (int j = 0; j < 6-classement.size(); j++) {
+            JLabel label = new JLabel();
+            panelCentre.add(label);
+        }
 
 
 
