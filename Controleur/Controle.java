@@ -264,7 +264,6 @@ public class Controle implements Observer{
                     joueurs = new ArrayList<Joueur>();
                     for (int i = 0; i < noms.size(); i++) {
                         Joueur j = new Joueur(noms.get(i));
-                        System.out.println(j.getPseudo());
                         joueurs.add(j);
                     }
                     vueParam = new VueParamPlateau();
