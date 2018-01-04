@@ -163,6 +163,33 @@ public class Controle implements Observer{
     }
 
 
+    public Joueur max(ArrayList<Joueur> tab, int taille){
+        int i =0;
+        int max = -1;
+        Joueur j = null ;
+        while (i<taille){
+            if(tab.get(i).getPoints()>max){
+                max = tab.get(i).getPoints();
+                j = tab.get(i);                
+            }
+            i++;
+        }
+        return j;
+    }
+    
+    
+    public ArrayList<Joueur> trier(ArrayList<Joueur> tab){
+        ArrayList<Joueur> listeTrie = new ArrayList<Joueur>();
+        Joueur j = null;
+        while (tab.isEmpty()== false){
+            j = max(tab,tab.size());
+            tab.remove(j);
+            listeTrie.add(j);
+        }
+        return listeTrie;
+    }
+    
+    
     
     @Override
     public void update(Observable observable, Object obj) {
@@ -388,7 +415,8 @@ public class Controle implements Observer{
                             }
                             
                         } else{
-                            vueClassement = new VueClassement(joueurs);
+                            ArrayList<Joueur> classement = trier(joueurs);
+                            vueClassement = new VueClassement(classement);
                             vueClassement.addObserver(this);
                             vueMorpion.close();
                             vueClassement.afficher();

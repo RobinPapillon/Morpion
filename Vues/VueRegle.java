@@ -50,12 +50,14 @@ public class VueRegle extends Observable{
         
         // =================================================================================
         // CENTRE
-        JPanel panelCentre = new JPanel(new GridLayout(3,1));
+        JPanel panelCentre = new JPanel(new GridLayout(6,1));
         mainPanel.add(panelCentre, BorderLayout.CENTER);
-        panelCentre.add(new JLabel("Pour gagner au morpion il faut aligner autant de symbole"
-                , JLabel.LEFT));
-        panelCentre.add(new JLabel());
-        panelCentre.add(new JLabel());
+        panelCentre.add(new JLabel("Pour gagner au morpion il faut aligner autant de symbole ", JLabel.LEFT));
+        panelCentre.add(new JLabel("que le nombre de case sur un coté de la grille. ", JLabel.LEFT));
+        panelCentre.add(new JLabel("exemple : sur une grille 5x5 il faut aligner 5 symboles.", JLabel.LEFT)); 
+        panelCentre.add(new JLabel("On peut aligner les symboles en ligne colones ou diagonales.", JLabel.LEFT));
+        panelCentre.add(new JLabel("Pour le système du tournoi chaque joueur rencontre chaque autre joueur une fois.", JLabel.LEFT));
+        panelCentre.add(new JLabel("Une victoire rapporte 2points au vainqueur, un nul rapporte 1 point au deux , joueurs.", JLabel.LEFT));
         
         // =================================================================================
         // SUD

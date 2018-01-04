@@ -3,7 +3,7 @@ package Morpion;
 public class Joueur {
     private String pseudo;
     private Symbole symbole;
-    private int points;
+    private int points= 0;
     
     public Joueur(String p){
         setPseudo(p);
