@@ -15,9 +15,11 @@ public class Plateau {
     private Joueur j2;
            
     
-    public Plateau(String nom1, String nom2, int taille){
-        j1 = new Joueur(nom1, Symbole.CROIX);
-        j2 = new Joueur(nom2, Symbole.ROND);
+    public Plateau(Joueur j1, Joueur j2, int taille){
+        this.j1 = j1;
+        this.j2 = j2;
+        j1.setSymbole(Symbole.CROIX);
+        j2.setSymbole(Symbole.ROND);       
         setPlateau(taille);
         nbCasesCochees = 0;
         

@@ -165,7 +165,7 @@ public class Controle implements Observer{
         
         for (int i = 0; i < joueurs.size()-1; i++) {
             for (int j = i+1; j < joueurs.size(); j++) {
-                Plateau p = new Plateau(joueurs.get(i).getPseudo(),joueurs.get(j).getPseudo(), taille);
+                Plateau p = new Plateau(joueurs.get(i),joueurs.get(j), taille);
                 listeTournoi.add(p);
             }
         }
@@ -284,7 +284,7 @@ public class Controle implements Observer{
                 int tailleSelect = vueParam.getTailleSelect();
                 if (modeDeJeu == "vueDuel") {
                     vueMorpion = new VueMorpion(noms.get(0),noms.get(1),tailleSelect);
-                    plateau = new Plateau(j1.getPseudo(), j2.getPseudo(), tailleSelect);
+                    plateau = new Plateau(j1, j2, tailleSelect);
                     vueMorpion.addObserver(this);
                     vueParam.close();
                     vueMorpion.afficher();
@@ -443,7 +443,7 @@ public class Controle implements Observer{
                 
                 vueMorpion = new VueMorpion(noms.get(0),noms.get(1),tailleSelect);
                 
-                plateau = new Plateau(j1.getPseudo(), j2.getPseudo(), tailleSelect);
+                plateau = new Plateau(j1, j2, tailleSelect);
                 vueMorpion.addObserver(this);
                 vueFinDuel.close();
                 vueMorpion.afficher();
