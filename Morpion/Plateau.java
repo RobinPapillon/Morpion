@@ -8,7 +8,6 @@ public class Plateau {
     private int cote;
     private int nbCases;
     private int nbCasesCochees;
-    private ArrayList<Case> cases;
     private int[][] matriceRond;
     private int[][] matriceCroix;
     private Message modeJeu;
@@ -143,20 +142,7 @@ public class Plateau {
         this.nbCases = nbCase * nbCase;
     }
 
-    /**
-     * @return the cases
-     */
-    public ArrayList<Case> getCases() {
-        return cases;
-    }
-
-    /**
-     * @param cases the cases to set
-     */
-    public void setCases(ArrayList<Case> cases) {
-        this.cases = cases;
-    }
-
+    
     /**
      * @return the nbCasesCochees
      */
