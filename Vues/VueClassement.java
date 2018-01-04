@@ -103,24 +103,6 @@ public class VueClassement extends Observable{
 
     }
     
-        public static void main(String [] args) {
-        Joueur j1 = new Joueur("tom", 0);
-        Joueur j2 = new Joueur("toto", 2);
-        Joueur j3 = new Joueur("titi", 3); 
-        ArrayList<Joueur> liste = new ArrayList<Joueur>();
-        liste.add(j1);
-        liste.add(j2);
-        liste.add(j3);
-        VueClassement exemple1 = new VueClassement(liste);
-        JFrame window = new JFrame();
-        window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        window.setSize(700, 500);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
-        window.setTitle("MORPION");
-        window.add(exemple1.getMainPanel());
-        window.setVisible(true);
-   }
 
     /**
      * @return the mainPanel

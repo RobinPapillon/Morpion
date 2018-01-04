@@ -68,18 +68,18 @@ public class VueParamPlateau extends Observable{
             if (i == 4) {
                 panelCentre.add(new JLabel("Taille du plateau :", JLabel.CENTER));
             }else if (i == 7) {
-                boutonRadio = new JRadioButton("3 X 3");
+                boutonRadio = new JRadioButton("3");
                 panelCentre.add(boutonRadio);
                 groupeEspeces.add(boutonRadio);
                 ensembleDesBoutonsRadios.put(ensembleDesBoutonsRadios.size(), boutonRadio);
                 boutonRadio.setSelected(true);
             }else if (i == 10) {
-                boutonRadio = new JRadioButton("4 X 4");
+                boutonRadio = new JRadioButton("4");
                 panelCentre.add(boutonRadio);
                 groupeEspeces.add(boutonRadio);
                 ensembleDesBoutonsRadios.put(ensembleDesBoutonsRadios.size(), boutonRadio);
             }else if (i == 13) {
-                boutonRadio = new JRadioButton("5 X 5");
+                boutonRadio = new JRadioButton("5");
                 panelCentre.add(boutonRadio);
                 groupeEspeces.add(boutonRadio);
                 ensembleDesBoutonsRadios.put(ensembleDesBoutonsRadios.size(), boutonRadio);
